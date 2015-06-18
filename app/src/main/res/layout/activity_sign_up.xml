@@ -52,9 +52,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    android:singleLine="true"
+                    android:inputType="textAutoCorrect|textEmailAddress"
                     android:lines="1"
-                    android:inputType="textAutoCorrect|textEmailAddress" />
+                    android:singleLine="true" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout

@@ -38,21 +38,21 @@ public class SignInActivityTest {
         //Without email and password sign in
         onView(withId(R.id.sign_in_button)).perform(click());
         safeSleep(100);
-        onView(withText(R.string.hello_world)).check(doesNotExist());
+        onView(withText(R.string.home)).check(doesNotExist());
         onView(withText(R.string.error_empty_email)).check(matches(isDisplayed()));
 
         //Without password sign in
         onView(withId(R.id.email)).perform(typeText("alice@gmail.com"), closeSoftKeyboard());
         safeSleep(100);
         onView(withId(R.id.sign_in_button)).perform(click());
-        onView(withText(R.string.hello_world)).check(doesNotExist());
+        onView(withText(R.string.home)).check(doesNotExist());
         onView(withText(R.string.error_empty_password)).check(matches(isDisplayed()));
 
         //With small password sign in
         onView(withId(R.id.password)).perform(typeText("pass"), closeSoftKeyboard());
         safeSleep(100);
         onView(withId(R.id.sign_in_button)).perform(click());
-        onView(withText(R.string.hello_world)).check(doesNotExist());
+        onView(withText(R.string.home)).check(doesNotExist());
         onView(withText(R.string.error_password_min_len)).check(matches(isDisplayed()));
     }
 
@@ -67,7 +67,7 @@ public class SignInActivityTest {
         safeSleep(100);
         onView(withId(R.id.sign_in_button)).perform(click());
         safeSleep(100);
-        onView(withText(R.string.hello_world)).check(matches(isDisplayed()));
+        onView(withText(R.string.home)).check(matches(isDisplayed()));
         pressBack();
     }
 

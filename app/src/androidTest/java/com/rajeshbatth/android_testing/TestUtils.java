@@ -6,7 +6,7 @@ package com.rajeshbatth.android_testing;
  */
 public class TestUtils {
 
-    public static void safeSleep(int time){
+    public static void safeSleep(int time) {
         try {
             Thread.sleep(time);
         } catch (InterruptedException e) {
