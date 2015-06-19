@@ -1,14 +1,16 @@
-package com.rajeshbatth.android_testing;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
+package com.rajeshbatth.android_testing.ui;
 
 import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.rajeshbatth.android_testing.R;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
@@ -26,6 +28,7 @@ import static com.rajeshbatth.android_testing.TestUtils.safeSleep;
 @RunWith(AndroidJUnit4.class)
 public class SignInActivityTest {
 
+    @Rule
     public ActivityTestRule<SignInActivity> mActivityTestRule = new
             ActivityTestRule<>(SignInActivity.class, true, false);
 
@@ -68,7 +71,6 @@ public class SignInActivityTest {
         onView(withId(R.id.sign_in_button)).perform(click());
         safeSleep(100);
         onView(withText(R.string.home)).check(matches(isDisplayed()));
-        pressBack();
     }
 
 }

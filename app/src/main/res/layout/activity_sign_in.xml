@@ -74,6 +74,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:padding="8dp"
         android:text="Don't have and account?\nSign Up"
         android:textSize="18sp" />
 

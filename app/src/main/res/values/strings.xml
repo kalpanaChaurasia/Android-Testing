@@ -11,4 +11,6 @@
     <string name="error_empty_password">Password is empty</string>
     <string name="error_password_min_len">Password should be of minimum 6 characters</string>
     <string name="home">Home</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="prof_pic">profile picture</string>
 </resources>
