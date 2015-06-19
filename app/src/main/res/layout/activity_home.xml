@@ -3,13 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-              tools:context="com.rajeshbatth.android_testing.ui.HomeActivity">
+    tools:context="com.rajeshbatth.android_testing.ui.HomeActivity">
 
     <include layout="@layout/include_toolbar" />
 
-    <ListView
-        android:id="@+id/clients_listview"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/clients_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <android.support.v4.widget.ContentLoadingProgressBar
+            android:id="@+id/content_loading_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/empty_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </FrameLayout>
 
 </LinearLayout>

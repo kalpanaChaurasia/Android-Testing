@@ -1,15 +1,18 @@
 package com.rajeshbatth.android_testing.ui;
 
-import android.content.Intent;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
-
 import com.rajeshbatth.android_testing.R;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import android.app.Instrumentation;
+import android.content.Intent;
+import android.support.test.InstrumentationRegistry;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
@@ -20,6 +23,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static com.rajeshbatth.android_testing.TestUtils.closeAllActivities;
 import static com.rajeshbatth.android_testing.TestUtils.safeSleep;
 
 /**
@@ -31,12 +35,7 @@ public class SignUpActivityTest {
 
     @Rule
     public ActivityTestRule<SignUpActivity> mActivityTestRule = new ActivityTestRule<>(
-            SignUpActivity.class, false);
-
-    @Before
-    public void setUp() {
-
-    }
+            SignUpActivity.class);
 
     /**
      * Checks whether home activity is launched after successful login
@@ -56,7 +55,7 @@ public class SignUpActivityTest {
         safeSleep(100);
         onView(withId(R.id.submit_button)).perform(click());
         safeSleep(100);
-        onView(withText(R.string.hello_world)).check(matches(isDisplayed()));
+        onView(withText(R.string.home)).check(matches(isDisplayed()));
         pressBack();
     }
 }

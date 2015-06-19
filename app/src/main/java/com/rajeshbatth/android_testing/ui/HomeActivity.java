@@ -1,18 +1,20 @@
 package com.rajeshbatth.android_testing.ui;
 
-import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.support.annotation.VisibleForTesting;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.widget.ListView;
-
 import com.rajeshbatth.android_testing.App;
 import com.rajeshbatth.android_testing.R;
 import com.rajeshbatth.android_testing.adapter.ClientsAdapter;
 import com.rajeshbatth.android_testing.api.HomeApi;
 import com.rajeshbatth.android_testing.model.Client;
 import com.rajeshbatth.android_testing.model.HomeDataModel;
+
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
+import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.Toolbar;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -35,8 +37,16 @@ public class HomeActivity extends AppCompatActivity {
     @Inject
     HomeApi mHomeApi;
 
+    @InjectView(R.id.content_loading_progress)
+    ContentLoadingProgressBar mContentLoadingProgress;
+
+    @InjectView(R.id.empty_text)
+    AppCompatTextView mEmptyText;
+
     private ClientsAdapter mAdapter;
+
     private ProgressDialog mProgressDialog;
+
     private ArrayList<Client> mClientList = new ArrayList<>();
 
     @VisibleForTesting
@@ -46,12 +56,10 @@ public class HomeActivity extends AppCompatActivity {
             mClientList.clear();
             mClientList.addAll(homeDataModel.getClients());
             mAdapter.notifyDataSetChanged();
-            mProgressDialog.dismiss();
         }
 
         @Override
         public void failure(RetrofitError error) {
-            mProgressDialog.dismiss();
         }
     };
 
@@ -74,6 +82,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private void fetchClients() {
         mHomeApi.getHomeDataAsync(mCallback);
-        mProgressDialog = ProgressDialog.show(this, null, "Loading..", false, false);
     }
+
 }
