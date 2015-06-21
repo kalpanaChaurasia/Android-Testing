@@ -1,10 +1,10 @@
 package com.rajeshbatth.android_testing;
 
-import android.app.Application;
-
 import com.rajeshbatth.android_testing.di.components.DaggerHomeComponent;
 import com.rajeshbatth.android_testing.di.components.HomeComponent;
 import com.rajeshbatth.android_testing.di.module.NetworkModule;
+
+import android.app.Application;
 
 /**
  * Created by rajesh.j on 6/19/2015.
@@ -18,7 +18,7 @@ public class App extends Application {
         super.onCreate();
         if (getHomeComponent() == null) {
             setHomeComponent(DaggerHomeComponent.builder().networkModule(new NetworkModule())
-                                                .build());
+                    .build());
         }
     }
 

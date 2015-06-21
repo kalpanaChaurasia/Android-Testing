@@ -1,5 +1,6 @@
 package com.rajeshbatth.android_testing.di.module;
 
+import com.rajeshbatth.android_testing.api.AccountsApi;
 import com.rajeshbatth.android_testing.api.HomeApi;
 import com.rajeshbatth.android_testing.conf.Constants;
 
@@ -17,11 +18,16 @@ public class NetworkModule {
     @Singleton
     @Provides
     public RestAdapter provideRestAdapter() {
-        return new RestAdapter.Builder().setEndpoint(Constants.API_HOST).build();
+        return new RestAdapter.Builder().setEndpoint(Constants.Urls.API_HOST).build();
     }
 
     @Provides
     public HomeApi provideHomeApi(RestAdapter restAdapter) {
         return restAdapter.create(HomeApi.class);
+    }
+
+    @Provides
+    public AccountsApi provideAccountsApi(RestAdapter restAdapter) {
+        return restAdapter.create(AccountsApi.class);
     }
 }

@@ -24,7 +24,7 @@ public class TestNetworkModule {
     @Provides
     public RestAdapter provideRestAdapter() {
         return new RestAdapter.Builder()
-                .setEndpoint(Constants.API_HOST)
+                .setEndpoint(Constants.Urls.API_HOST)
                 .setExecutors(AsyncTask.THREAD_POOL_EXECUTOR, new MainThreadExecutor())
                 .build();
     }

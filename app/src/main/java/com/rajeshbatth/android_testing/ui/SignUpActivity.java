@@ -1,5 +1,7 @@
 package com.rajeshbatth.android_testing.ui;
 
+import com.rajeshbatth.android_testing.R;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -7,8 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-
-import com.rajeshbatth.android_testing.R;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

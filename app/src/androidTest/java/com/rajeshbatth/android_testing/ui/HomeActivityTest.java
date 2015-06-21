@@ -1,8 +1,6 @@
 package com.rajeshbatth.android_testing.ui;
 
 import com.rajeshbatth.android_testing.App;
-import com.rajeshbatth.android_testing.R;
-import com.rajeshbatth.android_testing.TestUtils;
 import com.rajeshbatth.android_testing.api.HomeApi;
 import com.rajeshbatth.android_testing.di.components.DaggerTestHomeComponent;
 import com.rajeshbatth.android_testing.di.components.TestHomeComponent;
@@ -30,12 +28,7 @@ import javax.inject.Inject;
 
 import retrofit.Callback;
 
-import static android.support.test.espresso.Espresso.onData;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static com.rajeshbatth.android_testing.TestUtils.closeAllActivities;
 import static junit.framework.Assert.assertSame;
-import static org.hamcrest.Matchers.hasItem;
 
 /**
  * Created by rajesh.j on 6/19/2015.
