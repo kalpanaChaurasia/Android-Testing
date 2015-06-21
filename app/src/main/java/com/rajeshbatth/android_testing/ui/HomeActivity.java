@@ -6,6 +6,7 @@ import com.rajeshbatth.android_testing.adapter.ClientsAdapter;
 import com.rajeshbatth.android_testing.api.HomeApi;
 import com.rajeshbatth.android_testing.model.Client;
 import com.rajeshbatth.android_testing.model.HomeDataModel;
+import com.rajeshbatth.android_testing.ui.SplashActivity.TaskListener;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -49,6 +50,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<Client> mClientList = new ArrayList<>();
 
+    private TaskListener mTaskListener;
+
     @VisibleForTesting
     Callback<HomeDataModel> mCallback = new Callback<HomeDataModel>() {
         @Override
@@ -56,6 +59,9 @@ public class HomeActivity extends AppCompatActivity {
             mClientList.clear();
             mClientList.addAll(homeDataModel.getClients());
             mAdapter.notifyDataSetChanged();
+            if (mTaskListener != null) {
+                mTaskListener.onTaskEnded();
+            }
         }
 
         @Override
@@ -76,12 +82,23 @@ public class HomeActivity extends AppCompatActivity {
         fetchClients();
     }
 
+    public TaskListener getTaskListener() {
+        return mTaskListener;
+    }
+
+    public void setTaskListener(TaskListener taskListener) {
+        mTaskListener = taskListener;
+    }
+
     private void injectDependencies() {
         ((App) getApplication()).getHomeComponent().inject(this);
     }
 
     private void fetchClients() {
         mHomeApi.getHomeDataAsync(mCallback);
+        if (mTaskListener != null) {
+            mTaskListener.onTaskEnded();
+        }
     }
 
 }

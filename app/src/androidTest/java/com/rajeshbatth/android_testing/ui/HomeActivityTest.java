@@ -1,6 +1,7 @@
 package com.rajeshbatth.android_testing.ui;
 
 import com.rajeshbatth.android_testing.App;
+import com.rajeshbatth.android_testing.MyIdlingResource;
 import com.rajeshbatth.android_testing.api.HomeApi;
 import com.rajeshbatth.android_testing.di.components.DaggerTestHomeComponent;
 import com.rajeshbatth.android_testing.di.components.TestHomeComponent;
@@ -18,6 +19,7 @@ import android.app.Instrumentation;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.Espresso;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -53,6 +55,14 @@ public class HomeActivityTest {
         app.setHomeComponent(testHomeComponent);
         testHomeComponent.inject(this);
     }
+
+    public void testActualServer() {
+        HomeActivity activity = mActivityTestRule.getActivity();
+        MyIdlingResource idlingResource = new MyIdlingResource();
+        activity.setTaskListener(idlingResource);
+        Espresso.registerIdlingResources(idlingResource);
+    }
+
 
     @Test
     public void testHitsServer() {
@@ -103,4 +113,6 @@ public class HomeActivityTest {
         homeDataModel.setClients(clients);
         return homeDataModel;
     }
+
+
 }

@@ -1,10 +1,11 @@
 package com.rajeshbatth.android_testing.di.components;
 
+import com.rajeshbatth.android_testing.account.AccountsManager;
+import com.rajeshbatth.android_testing.di.module.AccountsModule;
 import com.rajeshbatth.android_testing.di.module.AndroidModule;
 import com.rajeshbatth.android_testing.ui.SplashActivity;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import javax.inject.Singleton;
 
@@ -15,13 +16,12 @@ import dagger.Component;
  * Date: 19-Jun-2015.
  */
 @Singleton
-@Component(modules = {AndroidModule.class})
+@Component(dependencies = {AndroidModule.class}, modules = {AccountsModule.class})
 public interface SplashComponent {
 
-    SharedPreferences provideSharedPreferences();
+    AccountsManager provideAccountsManager();
 
     void inject(SplashActivity splashActivity);
-    void inject(SplashComponent splashComponent);
 
     class Injector {
 
