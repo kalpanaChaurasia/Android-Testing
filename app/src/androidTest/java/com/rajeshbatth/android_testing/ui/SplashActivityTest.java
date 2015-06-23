@@ -3,7 +3,6 @@ package com.rajeshbatth.android_testing.ui;
 import android.support.test.espresso.Espresso;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.util.Log;
 
 import com.rajeshbatth.android_testing.MyIdlingResource;
 import com.rajeshbatth.android_testing.R;
@@ -34,7 +33,6 @@ public class SplashActivityTest {
 
     @Before
     public void setUp() {
-        Log.d(SplashActivity.TAG, "setUp ");
         MyIdlingResource idlingResource = new MyIdlingResource();
         SplashActivity activity = mActivityTestRule.getActivity();
         activity.setTaskListener(idlingResource);
@@ -44,7 +42,6 @@ public class SplashActivityTest {
 
     @Test
     public void testSignInActivityLaunch() {
-        Log.d(SplashActivity.TAG, "testNextActivityLaunched test");
 
         SplashActivity activity = mActivityTestRule.getActivity();
         AccountsManager accountsManager = Mockito.mock(AccountsManager.class);
@@ -58,7 +55,6 @@ public class SplashActivityTest {
 
    /* @Test
     public void testHomeActivityLaunch() {
-        Log.d(SplashActivity.TAG, "testNextActivityLaunched test");
 
         SplashActivity activity = mActivityTestRule.getActivity();
         AccountsManager accountsManager = Mockito.mock(AccountsManager.class);

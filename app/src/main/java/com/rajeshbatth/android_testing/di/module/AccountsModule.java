@@ -1,10 +1,11 @@
 package com.rajeshbatth.android_testing.di.module;
 
-import com.rajeshbatth.android_testing.account.AccountsManager;
-
 import android.content.SharedPreferences;
 
+import com.rajeshbatth.android_testing.account.AccountsManager;
+
 import dagger.Module;
+import dagger.Provides;
 
 /**
  * Author: Rajesh Batth
@@ -13,6 +14,7 @@ import dagger.Module;
 @Module
 public class AccountsModule {
 
+    @Provides
     AccountsManager provideAccountsManager(SharedPreferences sharedPreferences) {
         return new AccountsManager(sharedPreferences);
     }

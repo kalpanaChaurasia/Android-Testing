@@ -1,9 +1,7 @@
 package com.rajeshbatth.android_testing;
 
 import android.support.test.espresso.IdlingResource;
-import android.util.Log;
 
-import com.rajeshbatth.android_testing.ui.SplashActivity;
 import com.rajeshbatth.android_testing.utils.TaskListener;
 
 /**
@@ -34,12 +32,10 @@ public class MyIdlingResource implements IdlingResource, TaskListener {
     @Override
     public void onTaskStarted() {
         mIsTaskRunning = true;
-        Log.d(SplashActivity.TAG, "onTaskStarted");
     }
 
     @Override
     public void onTaskEnded() {
-        Log.d(SplashActivity.TAG, "onTaskEnded");
         mIsTaskRunning = false;
         if (mResourceCallback != null) {
             mResourceCallback.onTransitionToIdle();

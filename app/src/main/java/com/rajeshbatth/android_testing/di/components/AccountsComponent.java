@@ -1,13 +1,14 @@
 package com.rajeshbatth.android_testing.di.components;
 
+import android.content.Context;
+
+import com.rajeshbatth.android_testing.account.AccountsManager;
 import com.rajeshbatth.android_testing.api.AccountsApi;
 import com.rajeshbatth.android_testing.di.module.AccountsModule;
 import com.rajeshbatth.android_testing.di.module.AndroidModule;
 import com.rajeshbatth.android_testing.di.module.NetworkModule;
 import com.rajeshbatth.android_testing.ui.SignInActivity;
 import com.rajeshbatth.android_testing.ui.SignUpActivity;
-
-import android.content.Context;
 
 import javax.inject.Singleton;
 
@@ -23,6 +24,8 @@ import dagger.Component;
 public interface AccountsComponent {
 
     AccountsApi provideAccountsApi();
+
+    AccountsManager provideAccountsManager();
 
     void inject(SignInActivity signInActivity);
 

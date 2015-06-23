@@ -1,13 +1,12 @@
 package com.rajeshbatth.android_testing.account;
 
+import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
+
 import com.rajeshbatth.android_testing.conf.Constants;
 import com.rajeshbatth.android_testing.model.User;
 
-import android.content.SharedPreferences;
-
 import javax.inject.Inject;
-
-import dagger.Module;
 
 /**
  * Author: Rajesh Batth
@@ -17,14 +16,12 @@ import dagger.Module;
 public class AccountsManager {
 
     final SharedPreferences mSharedPreferences;
+    private User mCurrentUser;
 
     @Inject
     public AccountsManager(SharedPreferences sharedPreferences) {
         mSharedPreferences = sharedPreferences;
     }
-
-    private User mCurrentUser;
-
 
     public boolean isUserLoggedIn() {
         return mSharedPreferences.getBoolean(Constants.Prefs.USER_SIGNED_IN, false);
@@ -32,13 +29,15 @@ public class AccountsManager {
 
     public void logout() {
         mSharedPreferences.edit().remove(Constants.Prefs.USER_SIGNED_IN).apply();
+        mCurrentUser = null;
     }
 
     public User getCurrentUser() {
         return mCurrentUser;
     }
 
-    public void setCurrentUser(User currentUser) {
+    public void onUserLoggedIn(@NonNull User currentUser) {
+        mSharedPreferences.edit().remove(Constants.Prefs.USER_SIGNED_IN).apply();
         mCurrentUser = currentUser;
     }
 

@@ -1,10 +1,10 @@
 package com.rajeshbatth.android_testing.di.module;
 
-import com.rajeshbatth.android_testing.conf.Constants;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+
+import com.rajeshbatth.android_testing.conf.Constants;
 
 import javax.inject.Singleton;
 

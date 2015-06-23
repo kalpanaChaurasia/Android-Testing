@@ -1,13 +1,14 @@
 package com.rajeshbatth.android_testing.adapter;
 
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.rajeshbatth.android_testing.R;
 import com.rajeshbatth.android_testing.model.Client;
 
@@ -22,12 +23,6 @@ public class ClientsAdapter extends BaseAdapter {
 
     public ClientsAdapter(@NonNull List<Client> clientList) {
         mClientList = clientList;
-    }
-
-    public void setClients(List<Client> clientList) {
-        mClientList.clear();
-        mClientList.addAll(clientList);
-        notifyDataSetChanged();
     }
 
     @Override
@@ -48,11 +43,12 @@ public class ClientsAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext())
-                                        .inflate(R.layout.item_client, parent, false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_client,
+                                                                           parent, false);
         }
         Client client = mClientList.get(position);
-        convertView.findViewById(R.id.profile_pic).setBackgroundColor(Color.RED);
+        ImageView profilePic = (ImageView) convertView.findViewById(R.id.profile_pic);
+        Glide.with(parent.getContext()).load(client.getPicture()).into(profilePic);
         ((TextView) convertView.findViewById(R.id.client_name)).setText(client.getFullName());
         return convertView;
     }

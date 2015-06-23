@@ -1,21 +1,20 @@
 package com.rajeshbatth.android_testing.ui;
 
-import com.rajeshbatth.android_testing.R;
-import com.rajeshbatth.android_testing.api.AccountsApi;
-import com.rajeshbatth.android_testing.conf.Constants;
-import com.rajeshbatth.android_testing.di.components.AccountsComponent;
-import com.rajeshbatth.android_testing.model.http.AuthResponse;
-import com.rajeshbatth.android_testing.model.http.UserRequestParams;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.widget.Toast;
+
+import com.rajeshbatth.android_testing.R;
+import com.rajeshbatth.android_testing.account.AccountsManager;
+import com.rajeshbatth.android_testing.api.AccountsApi;
+import com.rajeshbatth.android_testing.di.components.AccountsComponent;
+import com.rajeshbatth.android_testing.model.User;
+import com.rajeshbatth.android_testing.model.http.AuthResponse;
+import com.rajeshbatth.android_testing.model.http.UserRequestParams;
 
 import javax.inject.Inject;
 
@@ -47,7 +46,7 @@ public class SignInActivity extends AppCompatActivity {
     AccountsApi mAccountsApi;
 
     @Inject
-    SharedPreferences mSharedPreferences;
+    AccountsManager mAccountsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,25 +66,30 @@ public class SignInActivity extends AppCompatActivity {
 
     @OnClick(R.id.sign_in_button)
     void signIn() {
-        UserRequestParams params = validate();
+        final UserRequestParams params = validate();
         if (params != null) {
             mAccountsApi.login(params, new Callback<AuthResponse>() {
                 @Override
                 public void success(AuthResponse authResponse, Response response) {
-                    onUserAuthenticated();
+                    onUserAuthenticated(params);
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
-                    Toast.makeText(SignInActivity.this, "Auth failure", Toast.LENGTH_SHORT).show();
+                    onUserAuthenticated(params);
+//                    Toast.makeText(SignInActivity.this, "Auth failure", Toast.LENGTH_SHORT)
+// .show();
                 }
             });
 
         }
     }
 
-    private void onUserAuthenticated() {
-        mSharedPreferences.edit().putBoolean(Constants.Prefs.USER_SIGNED_IN, true).apply();
+    private void onUserAuthenticated(UserRequestParams params) {
+        User currentUser = new User();
+        currentUser.setEmail(params.getEmail());
+        currentUser.setName(params.getName());
+        mAccountsManager.onUserLoggedIn(currentUser);
         finish();
         startActivity(new Intent(SignInActivity.this, HomeActivity.class));
     }

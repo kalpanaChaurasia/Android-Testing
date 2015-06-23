@@ -13,6 +13,8 @@ public class Client {
 
     private String email;
 
+    private String picture;
+
     public String getFullName() {
         return fullName;
     }
@@ -43,5 +45,13 @@ public class Client {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }
