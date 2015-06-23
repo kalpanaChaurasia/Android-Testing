@@ -1,10 +1,10 @@
 package com.rajeshbatth.android_testing;
 
-import com.rajeshbatth.android_testing.ui.SplashActivity;
-import com.rajeshbatth.android_testing.ui.SplashActivity.TaskListener;
-
 import android.support.test.espresso.IdlingResource;
 import android.util.Log;
+
+import com.rajeshbatth.android_testing.ui.SplashActivity;
+import com.rajeshbatth.android_testing.utils.TaskListener;
 
 /**
  * Author: Rajesh Batth

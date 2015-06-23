@@ -1,5 +1,13 @@
 package com.rajeshbatth.android_testing.ui;
 
+import android.app.Instrumentation;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.Espresso;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
+
 import com.rajeshbatth.android_testing.App;
 import com.rajeshbatth.android_testing.MyIdlingResource;
 import com.rajeshbatth.android_testing.api.HomeApi;
@@ -14,14 +22,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
-
-import android.app.Instrumentation;
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.Espresso;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,8 +77,6 @@ public class HomeActivityTest {
                 mHomeActivity.mCallback.success(dummyData, null);
             }
         });
-//        onData(hasItem(dummyData.getClients().get(0))).inAdapterView(withId(R.id.clients_listview))
-//                .perform(click());
     }
 
     @Test
