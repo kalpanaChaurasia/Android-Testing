@@ -2,10 +2,8 @@ package com.rajeshbatth.android_testing.account;
 
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
-
 import com.rajeshbatth.android_testing.conf.Constants;
 import com.rajeshbatth.android_testing.model.User;
-
 import javax.inject.Inject;
 
 /**
@@ -15,30 +13,28 @@ import javax.inject.Inject;
 
 public class AccountsManager {
 
-    final SharedPreferences mSharedPreferences;
-    private User mCurrentUser;
+  final SharedPreferences mSharedPreferences;
+  private User mCurrentUser;
 
-    @Inject
-    public AccountsManager(SharedPreferences sharedPreferences) {
-        mSharedPreferences = sharedPreferences;
-    }
+  @Inject public AccountsManager(SharedPreferences sharedPreferences) {
+    mSharedPreferences = sharedPreferences;
+  }
 
-    public boolean isUserLoggedIn() {
-        return mSharedPreferences.getBoolean(Constants.Prefs.USER_SIGNED_IN, false);
-    }
+  public boolean isUserLoggedIn() {
+    return mSharedPreferences.getBoolean(Constants.Prefs.USER_SIGNED_IN, false);
+  }
 
-    public void logout() {
-        mSharedPreferences.edit().remove(Constants.Prefs.USER_SIGNED_IN).apply();
-        mCurrentUser = null;
-    }
+  public void logout() {
+    mSharedPreferences.edit().remove(Constants.Prefs.USER_SIGNED_IN).apply();
+    mCurrentUser = null;
+  }
 
-    public User getCurrentUser() {
-        return mCurrentUser;
-    }
+  public User getCurrentUser() {
+    return mCurrentUser;
+  }
 
-    public void onUserLoggedIn(@NonNull User currentUser) {
-        mSharedPreferences.edit().remove(Constants.Prefs.USER_SIGNED_IN).apply();
-        mCurrentUser = currentUser;
-    }
-
+  public void onUserLoggedIn(@NonNull User currentUser) {
+    mSharedPreferences.edit().remove(Constants.Prefs.USER_SIGNED_IN).apply();
+    mCurrentUser = currentUser;
+  }
 }

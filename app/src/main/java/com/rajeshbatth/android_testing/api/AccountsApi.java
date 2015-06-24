@@ -2,7 +2,6 @@ package com.rajeshbatth.android_testing.api;
 
 import com.rajeshbatth.android_testing.model.http.AuthResponse;
 import com.rajeshbatth.android_testing.model.http.UserRequestParams;
-
 import retrofit.Callback;
 import retrofit.http.POST;
 
@@ -12,9 +11,7 @@ import retrofit.http.POST;
  */
 public interface AccountsApi {
 
-    @POST("")
-    void register(UserRequestParams params);
+  @POST("") void register(UserRequestParams params);
 
-    @POST("")
-    void login(UserRequestParams params, Callback<AuthResponse> responseCallback);
+  @POST("") void login(UserRequestParams params, Callback<AuthResponse> responseCallback);
 }
