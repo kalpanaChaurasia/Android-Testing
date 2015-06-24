@@ -43,8 +43,8 @@ public class ClientsAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_client,
-                                                                           parent, false);
+            convertView = LayoutInflater.from(parent.getContext())
+                                        .inflate(R.layout.item_client, parent, false);
         }
         Client client = mClientList.get(position);
         ImageView profilePic = (ImageView) convertView.findViewById(R.id.profile_pic);

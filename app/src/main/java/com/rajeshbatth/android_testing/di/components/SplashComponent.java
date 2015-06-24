@@ -1,13 +1,11 @@
 package com.rajeshbatth.android_testing.di.components;
 
-import com.rajeshbatth.android_testing.account.AccountsManager;
-import com.rajeshbatth.android_testing.di.module.AccountsModule;
-import com.rajeshbatth.android_testing.di.module.AndroidModule;
-import com.rajeshbatth.android_testing.ui.SplashActivity;
-
 import android.content.Context;
 
-import javax.inject.Singleton;
+import com.rajeshbatth.android_testing.account.AccountsManager;
+import com.rajeshbatth.android_testing.di.module.AccountsModule;
+import com.rajeshbatth.android_testing.di.scope.PerActivity;
+import com.rajeshbatth.android_testing.ui.SplashActivity;
 
 import dagger.Component;
 
@@ -15,8 +13,8 @@ import dagger.Component;
  * Author: Rajesh Batth
  * Date: 19-Jun-2015.
  */
-@Singleton
-@Component(dependencies = {AndroidModule.class}, modules = {AccountsModule.class})
+@PerActivity
+@Component(dependencies = {ApplicationComponent.class}, modules = {AccountsModule.class})
 public interface SplashComponent {
 
     AccountsManager provideAccountsManager();
@@ -30,7 +28,10 @@ public interface SplashComponent {
         public static SplashComponent getSplashComponent(Context context) {
             if (sSplashComponent == null) {
                 sSplashComponent = DaggerSplashComponent.builder()
-                        .androidModule(new AndroidModule(context))
+                                                        .applicationComponent(
+                                                                ApplicationComponent.Injector
+                                                                        .getApplicationComponent(
+                                                                                context))
                         .build();
             }
             return sSplashComponent;

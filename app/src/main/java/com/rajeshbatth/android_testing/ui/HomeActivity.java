@@ -8,10 +8,10 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 
-import com.rajeshbatth.android_testing.App;
 import com.rajeshbatth.android_testing.R;
 import com.rajeshbatth.android_testing.adapter.ClientsAdapter;
 import com.rajeshbatth.android_testing.api.HomeApi;
+import com.rajeshbatth.android_testing.di.components.HomeComponent;
 import com.rajeshbatth.android_testing.model.Client;
 import com.rajeshbatth.android_testing.model.HomeDataModel;
 
@@ -56,11 +56,13 @@ public class HomeActivity extends BaseActivity {
             mClientList.addAll(homeDataModel.getClients());
             mAdapter.notifyDataSetChanged();
             setTaskRunning(false);
+            mProgressDialog.dismiss();
         }
 
         @Override
         public void failure(RetrofitError error) {
             setTaskRunning(false);
+            mProgressDialog.dismiss();
         }
     };
 
@@ -69,7 +71,7 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.inject(this);
-        injectDependencies();
+        HomeComponent.Injector.getSplashComponent(this).inject(this);
         setSupportActionBar(mToolbar);
         setTitle(getString(R.string.home));
         mAdapter = new ClientsAdapter(mClientList);
@@ -77,12 +79,9 @@ public class HomeActivity extends BaseActivity {
         fetchClients();
     }
 
-    private void injectDependencies() {
-        ((App) getApplication()).getHomeComponent().inject(this);
-    }
-
     private void fetchClients() {
         mHomeApi.getHomeDataAsync(mCallback);
+        mProgressDialog = ProgressDialog.show(this, null, "Loading...", false, false);
         setTaskRunning(true);
     }
 

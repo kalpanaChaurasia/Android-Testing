@@ -1,8 +1,8 @@
 package com.rajeshbatth.android_testing.di.module;
 
-import org.mockito.Mockito;
-
 import android.content.SharedPreferences;
+
+import org.mockito.Mockito;
 
 import javax.inject.Singleton;
 
@@ -10,15 +10,15 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Author: Rajesh Batth
- * Date: 19-Jun-2015.
+ * Created by rajesh.j on 6/24/2015.
  */
 @Module
-public class TestAndroidModule {
+public class TestApplicationModule {
 
-    @Singleton
     @Provides
-    SharedPreferences provideSharedPreferences(){
+    @Singleton
+    public SharedPreferences provideSharedPreferences() {
         return Mockito.mock(SharedPreferences.class);
     }
+
 }

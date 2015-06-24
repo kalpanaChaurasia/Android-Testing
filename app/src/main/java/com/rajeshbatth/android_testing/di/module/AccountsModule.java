@@ -3,6 +3,7 @@ package com.rajeshbatth.android_testing.di.module;
 import android.content.SharedPreferences;
 
 import com.rajeshbatth.android_testing.account.AccountsManager;
+import com.rajeshbatth.android_testing.di.scope.PerActivity;
 
 import dagger.Module;
 import dagger.Provides;
@@ -15,6 +16,7 @@ import dagger.Provides;
 public class AccountsModule {
 
     @Provides
+    @PerActivity
     AccountsManager provideAccountsManager(SharedPreferences sharedPreferences) {
         return new AccountsManager(sharedPreferences);
     }
