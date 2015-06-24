@@ -13,28 +13,28 @@ import javax.inject.Inject;
 
 public class AccountsManager {
 
-  final SharedPreferences mSharedPreferences;
-  private User mCurrentUser;
+  final SharedPreferences sharedPreferences;
+  private User currentUser;
 
   @Inject public AccountsManager(SharedPreferences sharedPreferences) {
-    mSharedPreferences = sharedPreferences;
+    this.sharedPreferences = sharedPreferences;
   }
 
   public boolean isUserLoggedIn() {
-    return mSharedPreferences.getBoolean(Constants.Prefs.USER_SIGNED_IN, false);
+    return sharedPreferences.getBoolean(Constants.Prefs.USER_SIGNED_IN, false);
   }
 
   public void logout() {
-    mSharedPreferences.edit().remove(Constants.Prefs.USER_SIGNED_IN).apply();
-    mCurrentUser = null;
+    sharedPreferences.edit().remove(Constants.Prefs.USER_SIGNED_IN).apply();
+    currentUser = null;
   }
 
   public User getCurrentUser() {
-    return mCurrentUser;
+    return currentUser;
   }
 
   public void onUserLoggedIn(@NonNull User currentUser) {
-    mSharedPreferences.edit().remove(Constants.Prefs.USER_SIGNED_IN).apply();
-    mCurrentUser = currentUser;
+    sharedPreferences.edit().remove(Constants.Prefs.USER_SIGNED_IN).apply();
+    this.currentUser = currentUser;
   }
 }

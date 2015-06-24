@@ -14,29 +14,29 @@ import com.rajeshbatth.android_testing.R;
 
 public class SignUpActivity extends AppCompatActivity {
 
-  @InjectView(R.id.toolbar) Toolbar mToolbar;
+  @InjectView(R.id.toolbar) Toolbar toolbar;
 
-  @InjectView(R.id.username) AppCompatEditText mUsername;
+  @InjectView(R.id.username) AppCompatEditText username;
 
-  @InjectView(R.id.username_layout) TextInputLayout mUsernameLayout;
+  @InjectView(R.id.username_layout) TextInputLayout usernameLayout;
 
-  @InjectView(R.id.email) AppCompatEditText mEmail;
+  @InjectView(R.id.email) AppCompatEditText email;
 
-  @InjectView(R.id.email_layout) TextInputLayout mEmailLayout;
+  @InjectView(R.id.email_layout) TextInputLayout emailLayout;
 
-  @InjectView(R.id.password) AppCompatEditText mPassword;
+  @InjectView(R.id.password) AppCompatEditText password;
 
-  @InjectView(R.id.password_layout) TextInputLayout mPasswordLayout;
+  @InjectView(R.id.password_layout) TextInputLayout passwordLayout;
 
-  @InjectView(R.id.confirm_password) AppCompatEditText mConfirmPassword;
+  @InjectView(R.id.confirm_password) AppCompatEditText confirmPassword;
 
-  @InjectView(R.id.confirm_password_layout) TextInputLayout mConfirmPasswordLayout;
+  @InjectView(R.id.confirm_password_layout) TextInputLayout confirmPasswordLayout;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sign_up);
     ButterKnife.inject(this);
-    setSupportActionBar(mToolbar);
+    setSupportActionBar(toolbar);
     setTitle("Sign Up");
   }
 
@@ -49,47 +49,47 @@ public class SignUpActivity extends AppCompatActivity {
   }
 
   private boolean validate() {
-    if (TextUtils.isEmpty(mUsername.getText().toString())) {
-      mUsernameLayout.setError("Username is empty");
-      mUsername.requestFocus();
+    if (TextUtils.isEmpty(username.getText().toString())) {
+      usernameLayout.setError("Username is empty");
+      username.requestFocus();
       return false;
     }
-    mUsernameLayout.setError(null);
+    usernameLayout.setError(null);
 
-    String email = mEmail.getText().toString();
+    String email = this.email.getText().toString();
     if (TextUtils.isEmpty(email)) {
-      mEmailLayout.setError("Email is empty");
-      mEmail.requestFocus();
+      emailLayout.setError("Email is empty");
+      this.email.requestFocus();
       return false;
     }
     /*if (Misc.validateEmail(email)) {
-      mEmailLayout.setError("Email address is invalid");
-      mEmail.requestFocus();
+      emailLayout.setError("Email address is invalid");
+      email.requestFocus();
       return false;
     }*/
-    mEmailLayout.setError(null);
+    emailLayout.setError(null);
 
-    String password = mPassword.getText().toString();
+    String password = this.password.getText().toString();
     if (TextUtils.isEmpty(password)) {
-      mPasswordLayout.setError("Password is empty");
-      mPassword.requestFocus();
+      passwordLayout.setError("Password is empty");
+      this.password.requestFocus();
       return false;
     }
 
     if (password.length() < 6) {
-      mPasswordLayout.setError("Password should be of minimum 6 characters");
-      mPassword.requestFocus();
+      passwordLayout.setError("Password should be of minimum 6 characters");
+      this.password.requestFocus();
       return false;
     }
-    mPasswordLayout.setError(null);
+    passwordLayout.setError(null);
 
-    String confirmPassword = mConfirmPassword.getText().toString();
+    String confirmPassword = this.confirmPassword.getText().toString();
     if (!password.equals(confirmPassword)) {
-      mConfirmPasswordLayout.setError("Password does not match");
-      mConfirmPassword.requestFocus();
+      confirmPasswordLayout.setError("Password does not match");
+      this.confirmPassword.requestFocus();
       return false;
     }
-    mConfirmPasswordLayout.setError(null);
+    confirmPasswordLayout.setError(null);
 
     return true;
   }

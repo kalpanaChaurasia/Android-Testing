@@ -66,7 +66,7 @@ public class HomeActivityTest {
         mActivityTestRule.launchActivity(new Intent());
         mHomeActivity = mActivityTestRule.getActivity();
         Mockito.verify(mHomeApi).getHomeDataAsync(Matchers.<Callback<HomeDataModel>>any());
-        assertSame(mHomeApi, mHomeActivity.mHomeApi);
+        assertSame(mHomeApi, mHomeActivity.homeApi);
         final HomeDataModel dummyData = getDummyData();
         mHomeActivity.runOnUiThread(new Runnable() {
             @Override
@@ -81,7 +81,7 @@ public class HomeActivityTest {
         mActivityTestRule.launchActivity(new Intent());
         mHomeActivity = mActivityTestRule.getActivity();
         Mockito.verify(mHomeApi).getHomeDataAsync(Matchers.<Callback<HomeDataModel>>any());
-        assertSame(mHomeApi, mHomeActivity.mHomeApi);
+        assertSame(mHomeApi, mHomeActivity.homeApi);
         final HomeDataModel dummyData = getDummyData();
         dummyData.getClients().clear();
         mHomeActivity.runOnUiThread(new Runnable() {

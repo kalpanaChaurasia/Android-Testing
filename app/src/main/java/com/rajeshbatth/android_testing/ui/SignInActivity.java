@@ -24,26 +24,26 @@ import retrofit.client.Response;
 
 public class SignInActivity extends AppCompatActivity {
 
-  @InjectView(R.id.toolbar) Toolbar mToolbar;
+  @InjectView(R.id.toolbar) Toolbar toolbar;
 
-  @InjectView(R.id.email) AppCompatEditText mEmail;
+  @InjectView(R.id.email) AppCompatEditText email;
 
-  @InjectView(R.id.email_layout) TextInputLayout mEmailLayout;
+  @InjectView(R.id.email_layout) TextInputLayout emailLayout;
 
-  @InjectView(R.id.password) AppCompatEditText mPassword;
+  @InjectView(R.id.password) AppCompatEditText password;
 
-  @InjectView(R.id.password_layout) TextInputLayout mPasswordLayout;
+  @InjectView(R.id.password_layout) TextInputLayout passwordLayout;
 
-  @Inject AccountsApi mAccountsApi;
+  @Inject AccountsApi accountsApi;
 
-  @Inject AccountsManager mAccountsManager;
+  @Inject AccountsManager accountsManager;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sign_in);
     ButterKnife.inject(this);
     AccountsComponent.Injector.getAccountsComponent(this).inject(this);
-    setSupportActionBar(mToolbar);
+    setSupportActionBar(toolbar);
     setTitle(R.string.sign_in);
   }
 
@@ -54,7 +54,7 @@ public class SignInActivity extends AppCompatActivity {
   @OnClick(R.id.sign_in_button) void signIn() {
     final UserRequestParams params = validate();
     if (params != null) {
-      mAccountsApi.login(params, new Callback<AuthResponse>() {
+      accountsApi.login(params, new Callback<AuthResponse>() {
         @Override public void success(AuthResponse authResponse, Response response) {
           onUserAuthenticated(params);
         }
@@ -72,7 +72,7 @@ public class SignInActivity extends AppCompatActivity {
     User currentUser = new User();
     currentUser.setEmail(params.getEmail());
     currentUser.setName(params.getName());
-    mAccountsManager.onUserLoggedIn(currentUser);
+    accountsManager.onUserLoggedIn(currentUser);
     finish();
     startActivity(new Intent(SignInActivity.this, HomeActivity.class));
   }
@@ -80,34 +80,34 @@ public class SignInActivity extends AppCompatActivity {
   private UserRequestParams validate() {
     UserRequestParams params = new UserRequestParams();
 
-    String email = mEmail.getText().toString();
+    String email = this.email.getText().toString();
     if (TextUtils.isEmpty(email)) {
-      mEmailLayout.setError(getString(R.string.error_empty_email));
-      mEmail.requestFocus();
+      emailLayout.setError(getString(R.string.error_empty_email));
+      this.email.requestFocus();
       return null;
     }
        /* if (Misc.validateEmail(email)) {
-            mEmailLayout.setError("Email address is invalid");
-            mEmail.requestFocus();
+            emailLayout.setError("Email address is invalid");
+            email.requestFocus();
             return false;
         }*/
-    mEmailLayout.setError(null);
+    emailLayout.setError(null);
     params.setEmail(email);
 
-    String password = mPassword.getText().toString();
+    String password = this.password.getText().toString();
     if (TextUtils.isEmpty(password)) {
-      mPasswordLayout.setError(getString(R.string.error_empty_password));
-      mPassword.requestFocus();
+      passwordLayout.setError(getString(R.string.error_empty_password));
+      this.password.requestFocus();
       return null;
     }
 
     if (password.length() < 6) {
-      mPasswordLayout.setError(getString(R.string.error_password_min_len));
-      mPassword.requestFocus();
+      passwordLayout.setError(getString(R.string.error_password_min_len));
+      this.password.requestFocus();
       return null;
     }
 
-    mPasswordLayout.setError(null);
+    passwordLayout.setError(null);
     params.setPassword(password);
     return params;
   }

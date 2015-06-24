@@ -3,7 +3,6 @@ package com.rajeshbatth.android_testing.ui;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.VisibleForTesting;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
@@ -23,34 +22,32 @@ import retrofit.client.Response;
 
 public class HomeActivity extends BaseActivity {
 
-  @InjectView(R.id.toolbar) Toolbar mToolbar;
+  @InjectView(R.id.toolbar) Toolbar toolbar;
 
-  @InjectView(R.id.clients_listview) ListView mClientsListView;
+  @InjectView(R.id.clients_listview) ListView clientsListView;
 
-  @Inject HomeApi mHomeApi;
+  @Inject HomeApi homeApi;
 
-  @InjectView(R.id.content_loading_progress) ContentLoadingProgressBar mContentLoadingProgress;
+  @InjectView(R.id.empty_text) AppCompatTextView emptyText;
 
-  @InjectView(R.id.empty_text) AppCompatTextView mEmptyText;
+  private ClientsAdapter adapter;
 
-  private ClientsAdapter mAdapter;
+  private ProgressDialog progressDialog;
 
-  private ProgressDialog mProgressDialog;
-
-  private ArrayList<Client> mClientList = new ArrayList<>();
+  private ArrayList<Client> clientList = new ArrayList<>();
 
   @VisibleForTesting Callback<HomeDataModel> mCallback = new Callback<HomeDataModel>() {
     @Override public void success(HomeDataModel homeDataModel, Response response) {
-      mClientList.clear();
-      mClientList.addAll(homeDataModel.getClients());
-      mAdapter.notifyDataSetChanged();
+      clientList.clear();
+      clientList.addAll(homeDataModel.getClients());
+      adapter.notifyDataSetChanged();
       setTaskRunning(false);
-      mProgressDialog.dismiss();
+      progressDialog.dismiss();
     }
 
     @Override public void failure(RetrofitError error) {
       setTaskRunning(false);
-      mProgressDialog.dismiss();
+      progressDialog.dismiss();
     }
   };
 
@@ -59,16 +56,16 @@ public class HomeActivity extends BaseActivity {
     setContentView(R.layout.activity_home);
     ButterKnife.inject(this);
     HomeComponent.Injector.getHomeComponent(this).inject(this);
-    setSupportActionBar(mToolbar);
+    setSupportActionBar(toolbar);
     setTitle(getString(R.string.home));
-    mAdapter = new ClientsAdapter(mClientList);
-    mClientsListView.setAdapter(mAdapter);
+    adapter = new ClientsAdapter(clientList);
+    clientsListView.setAdapter(adapter);
     fetchClients();
   }
 
   private void fetchClients() {
-    mHomeApi.getHomeDataAsync(mCallback);
-    mProgressDialog = ProgressDialog.show(this, null, "Loading...", false, false);
+    homeApi.getHomeDataAsync(mCallback);
+    progressDialog = ProgressDialog.show(this, null, "Loading...", false, false);
     setTaskRunning(true);
   }
 }

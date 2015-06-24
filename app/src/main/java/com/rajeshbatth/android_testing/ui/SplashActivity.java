@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 public class SplashActivity extends BaseActivity {
 
-  @Inject AccountsManager mAccountsManager;
+  @Inject AccountsManager accountsManager;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -32,7 +32,7 @@ public class SplashActivity extends BaseActivity {
 
   private void launchNextActivity() {
     finish();
-    if (mAccountsManager.isUserLoggedIn()) {
+    if (accountsManager.isUserLoggedIn()) {
       startActivity(new Intent(SplashActivity.this, HomeActivity.class));
     } else {
       startActivity(new Intent(SplashActivity.this, SignInActivity.class));

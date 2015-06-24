@@ -17,18 +17,18 @@ import java.util.List;
  */
 public class ClientsAdapter extends BaseAdapter {
 
-  private final List<Client> mClientList;
+  private final List<Client> clientList;
 
   public ClientsAdapter(@NonNull List<Client> clientList) {
-    mClientList = clientList;
+    this.clientList = clientList;
   }
 
   @Override public int getCount() {
-    return mClientList.size();
+    return clientList.size();
   }
 
   @Override public Object getItem(int position) {
-    return mClientList.get(position);
+    return clientList.get(position);
   }
 
   @Override public long getItemId(int position) {
@@ -40,7 +40,7 @@ public class ClientsAdapter extends BaseAdapter {
       convertView =
           LayoutInflater.from(parent.getContext()).inflate(R.layout.item_client, parent, false);
     }
-    Client client = mClientList.get(position);
+    Client client = clientList.get(position);
     ImageView profilePic = (ImageView) convertView.findViewById(R.id.profile_pic);
     Glide.with(parent.getContext()).load(client.getPicture()).into(profilePic);
     ((TextView) convertView.findViewById(R.id.client_name)).setText(client.getFullName());

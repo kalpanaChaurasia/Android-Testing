@@ -8,24 +8,24 @@ import com.rajeshbatth.android_testing.utils.TaskListener;
  * Date: 21-Jun-2015.
  */
 public class BaseActivity extends AppCompatActivity {
-  protected TaskListener mTaskListener;
+  protected TaskListener taskListener;
 
-  private boolean mIsRunning;
+  private boolean isRunning;
 
   public void setTaskListener(TaskListener taskListener) {
-    mTaskListener = taskListener;
-    if (mIsRunning && mTaskListener != null) {
-      mTaskListener.onTaskStarted();
+    this.taskListener = taskListener;
+    if (isRunning && this.taskListener != null) {
+      this.taskListener.onTaskStarted();
     }
   }
 
   public void setTaskRunning(boolean isRunning) {
-    if (mTaskListener != null) {
-      mIsRunning = isRunning;
-      if (mIsRunning) {
-        mTaskListener.onTaskStarted();
+    if (taskListener != null) {
+      this.isRunning = isRunning;
+      if (this.isRunning) {
+        taskListener.onTaskStarted();
       } else {
-        mTaskListener.onTaskEnded();
+        taskListener.onTaskEnded();
       }
     }
   }

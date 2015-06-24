@@ -45,7 +45,7 @@ public class SplashActivityTest {
 
         SplashActivity activity = mActivityTestRule.getActivity();
         AccountsManager accountsManager = Mockito.mock(AccountsManager.class);
-        activity.mAccountsManager = accountsManager;
+        activity.accountsManager = accountsManager;
 
         Mockito.when(accountsManager.isUserLoggedIn()).thenReturn(false);
         TestUtils.safeSleep(5000); //I want this code gone
@@ -58,7 +58,7 @@ public class SplashActivityTest {
 
         SplashActivity activity = mActivityTestRule.getActivity();
         AccountsManager accountsManager = Mockito.mock(AccountsManager.class);
-        activity.mAccountsManager = accountsManager;
+        activity.accountsManager = accountsManager;
 
         Mockito.when(accountsManager.isUserLoggedIn()).thenReturn(true);
         TestUtils.safeSleep(5000); //I want this code gone
