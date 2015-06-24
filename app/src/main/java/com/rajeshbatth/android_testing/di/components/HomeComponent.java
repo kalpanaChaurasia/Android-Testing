@@ -23,7 +23,7 @@ public interface HomeComponent {
 
         static HomeComponent sHomeComponent;
 
-        public static HomeComponent getSplashComponent(Context context) {
+        public static HomeComponent getHomeComponent(Context context) {
             if (sHomeComponent == null) {
                 sHomeComponent = DaggerHomeComponent
                         .builder()

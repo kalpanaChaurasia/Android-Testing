@@ -1,14 +1,11 @@
 package com.rajeshbatth.android_testing.ui;
 
-import android.app.Instrumentation;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.rajeshbatth.android_testing.App;
 import com.rajeshbatth.android_testing.MyIdlingResource;
 import com.rajeshbatth.android_testing.api.HomeApi;
 import com.rajeshbatth.android_testing.di.components.DaggerTestHomeComponent;
@@ -49,10 +46,10 @@ public class HomeActivityTest {
 
     @Before
     public void setUp() {
-        Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
-        App app = (App) instrumentation.getTargetContext().getApplicationContext();
-        TestHomeComponent testHomeComponent = DaggerTestHomeComponent.builder().build();
-        app.setHomeComponent(testHomeComponent);
+        TestHomeComponent testHomeComponent = DaggerTestHomeComponent
+                .builder()
+                .build();
+        TestHomeComponent.Injector.setHomeComponent(testHomeComponent);
         testHomeComponent.inject(this);
     }
 
