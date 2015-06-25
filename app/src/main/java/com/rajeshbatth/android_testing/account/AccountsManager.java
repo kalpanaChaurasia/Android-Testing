@@ -34,7 +34,7 @@ public class AccountsManager {
   }
 
   public void onUserLoggedIn(@NonNull User currentUser) {
-    sharedPreferences.edit().remove(Constants.Prefs.USER_SIGNED_IN).apply();
+    sharedPreferences.edit().putBoolean(Constants.Prefs.USER_SIGNED_IN, true).apply();
     this.currentUser = currentUser;
   }
 }

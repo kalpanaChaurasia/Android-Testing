@@ -33,10 +33,10 @@ import static org.hamcrest.core.IsAnything.anything;
     activity = intentsTestRule.getActivity();
   }
 
-  @Test public void testUserSignIn() {
+  @Test public void test1UserSignIn() {
     safeSleep(2000);
     matchToolbarTitle(activity.getString(R.string.sign_in));
-    onView(withId(R.id.email)).perform(typeText("alice@gmail.com"));
+    onView(withId(R.id.email)).perform(typeText("alice@gmail.com"), closeSoftKeyboard());
     onView(withId(R.id.password)).perform(typeText("secret_password"), closeSoftKeyboard());
     safeSleep(100);
     onView(withId(R.id.sign_in_button)).perform(click());
@@ -44,6 +44,13 @@ import static org.hamcrest.core.IsAnything.anything;
     matchToolbarTitle(activity.getString(R.string.home));
     onData(anything()).inAdapterView(withId(R.id.clients_listview)).atPosition(0).perform(click());
     safeSleep(100);
+    matchToolbarTitle(activity.getString(R.string.client_details));
+  }
+
+  @Test public void test2LaunchHome() {
+    safeSleep(2000);
+    matchToolbarTitle(activity.getString(R.string.home));
+    onData(anything()).inAdapterView(withId(R.id.clients_listview)).atPosition(0).perform(click());
     matchToolbarTitle(activity.getString(R.string.client_details));
   }
 }
