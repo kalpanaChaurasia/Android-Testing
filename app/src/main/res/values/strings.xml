@@ -14,4 +14,6 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="prof_pic">profile picture</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_client_detail">ClientDetailActivity</string>
+    <string name="client_details">Client Details</string>
 </resources>

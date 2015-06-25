@@ -1,51 +1,51 @@
 package com.rajeshbatth.android_testing.di.components;
 
 import android.content.Context;
-
+import com.rajeshbatth.android_testing.BaseApplication;
 import com.rajeshbatth.android_testing.account.AccountsManager;
 import com.rajeshbatth.android_testing.api.AccountsApi;
 import com.rajeshbatth.android_testing.di.module.AccountsModule;
-import com.rajeshbatth.android_testing.di.module.AndroidModule;
-import com.rajeshbatth.android_testing.di.module.NetworkModule;
+import com.rajeshbatth.android_testing.di.module.ApiModule;
+import com.rajeshbatth.android_testing.di.scope.PerActivity;
 import com.rajeshbatth.android_testing.ui.SignInActivity;
 import com.rajeshbatth.android_testing.ui.SignUpActivity;
-
-import javax.inject.Singleton;
-
 import dagger.Component;
+import java.lang.ref.WeakReference;
 
 /**
  * Author: Rajesh Batth
  * Date: 20-Jun-2015.
  */
-@Singleton
-@Component(dependencies = {AndroidModule.class},
-        modules = {NetworkModule.class, AccountsModule.class})
-public interface AccountsComponent {
+@PerActivity @Component(dependencies = { ApplicationComponent.class }, modules = {
+    ApiModule.class, AccountsModule.class
+}) public interface AccountsComponent {
 
-    AccountsApi provideAccountsApi();
+  AccountsApi provideAccountsApi();
 
-    AccountsManager provideAccountsManager();
+  AccountsManager provideAccountsManager();
 
-    void inject(SignInActivity signInActivity);
+  void inject(SignInActivity signInActivity);
 
-    void inject(SignUpActivity signUpActivity);
+  void inject(SignUpActivity signUpActivity);
 
-    class Injector {
+  class Holder {
 
-        static AccountsComponent sAccountsComponent;
+    static WeakReference<AccountsComponent> accountsComponentRef;
+    private static Context context;
 
-        public static AccountsComponent getAccountsComponent(Context context) {
-            if (sAccountsComponent == null) {
-                sAccountsComponent = DaggerAccountsComponent.builder()
-                        .androidModule(new AndroidModule(context))
-                        .build();
-            }
-            return sAccountsComponent;
-        }
-
-        public static void setAccountsComponent(AccountsComponent splashComponent) {
-            sAccountsComponent = splashComponent;
-        }
+    public static AccountsComponent getAccountsComponent(Context context) {
+      Holder.context = context;
+      if (accountsComponentRef == null || accountsComponentRef.get() == null) {
+        AccountsComponent accountsComponent = DaggerAccountsComponent.builder()
+            .applicationComponent(BaseApplication.applicationComponent(context))
+            .build();
+        accountsComponentRef = new WeakReference<>(accountsComponent);
+      }
+      return accountsComponentRef.get();
     }
+
+    public static void setAccountsComponent(AccountsComponent splashComponent) {
+      accountsComponentRef = new WeakReference<>(splashComponent);
+    }
+  }
 }

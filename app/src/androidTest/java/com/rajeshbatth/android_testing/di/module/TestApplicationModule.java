@@ -1,23 +1,41 @@
 package com.rajeshbatth.android_testing.di.module;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import com.facebook.stetho.okhttp.StethoInterceptor;
-import com.rajeshbatth.android_testing.api.AccountsApi;
-import com.rajeshbatth.android_testing.api.HomeApi;
 import com.rajeshbatth.android_testing.conf.Constants;
 import com.squareup.okhttp.OkHttpClient;
-
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
+import javax.inject.Singleton;
+import org.mockito.Mockito;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 
 /**
- * Created by rajesh.j on 6/19/2015.
+ * Created by rajesh.j on 6/24/2015.
  */
 @Module
-public class NetworkModule {
+public class TestApplicationModule {
+
+    final Context mAppContext;
+
+    public TestApplicationModule(@NonNull Context appContext) {
+        mAppContext = appContext.getApplicationContext();
+    }
+
+    @Provides
+    @Singleton
+    public Context provideAppContext() {
+        return mAppContext;
+    }
+
+    @Provides
+    @Singleton
+    public SharedPreferences provideSharedPreferences() {
+        return Mockito.mock(SharedPreferences.class);
+    }
 
 
     @Singleton
@@ -37,13 +55,4 @@ public class NetworkModule {
                 .build();
     }
 
-    @Provides
-    public HomeApi provideHomeApi(RestAdapter restAdapter) {
-        return restAdapter.create(HomeApi.class);
-    }
-
-    @Provides
-    public AccountsApi provideAccountsApi(RestAdapter restAdapter) {
-        return restAdapter.create(AccountsApi.class);
-    }
 }

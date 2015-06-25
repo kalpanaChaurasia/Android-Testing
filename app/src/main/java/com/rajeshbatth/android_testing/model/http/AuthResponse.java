@@ -8,33 +8,33 @@ import com.rajeshbatth.android_testing.model.User;
  */
 public class AuthResponse {
 
-    private String error;
+  private String error;
 
-    private int errorCode;
+  private int errorCode;
 
-    private User user;
+  private User user;
 
-    public String getError() {
-        return error;
-    }
+  public String getError() {
+    return error;
+  }
 
-    public void setError(String error) {
-        this.error = error;
-    }
+  public void setError(String error) {
+    this.error = error;
+  }
 
-    public int getErrorCode() {
-        return errorCode;
-    }
+  public int getErrorCode() {
+    return errorCode;
+  }
 
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
-    }
+  public void setErrorCode(int errorCode) {
+    this.errorCode = errorCode;
+  }
 
-    public User getUser() {
-        return user;
-    }
+  public User getUser() {
+    return user;
+  }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+  public void setUser(User user) {
+    this.user = user;
+  }
 }

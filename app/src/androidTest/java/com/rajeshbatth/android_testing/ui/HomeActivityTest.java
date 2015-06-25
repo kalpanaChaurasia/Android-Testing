@@ -1,33 +1,26 @@
 package com.rajeshbatth.android_testing.ui;
 
-import android.app.Instrumentation;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-
-import com.rajeshbatth.android_testing.App;
 import com.rajeshbatth.android_testing.MyIdlingResource;
 import com.rajeshbatth.android_testing.api.HomeApi;
 import com.rajeshbatth.android_testing.di.components.DaggerTestHomeComponent;
+import com.rajeshbatth.android_testing.di.components.HomeComponent;
 import com.rajeshbatth.android_testing.di.components.TestHomeComponent;
 import com.rajeshbatth.android_testing.model.Client;
 import com.rajeshbatth.android_testing.model.HomeDataModel;
-
+import java.util.ArrayList;
+import java.util.List;
+import javax.inject.Inject;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import retrofit.Callback;
 
 import static junit.framework.Assert.assertSame;
@@ -49,10 +42,10 @@ public class HomeActivityTest {
 
     @Before
     public void setUp() {
-        Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
-        App app = (App) instrumentation.getTargetContext().getApplicationContext();
-        TestHomeComponent testHomeComponent = DaggerTestHomeComponent.builder().build();
-        app.setHomeComponent(testHomeComponent);
+        TestHomeComponent testHomeComponent = DaggerTestHomeComponent
+                .builder()
+                .build();
+        HomeComponent.Holder.setHomeComponent(testHomeComponent);
         testHomeComponent.inject(this);
     }
 
@@ -69,7 +62,7 @@ public class HomeActivityTest {
         mActivityTestRule.launchActivity(new Intent());
         mHomeActivity = mActivityTestRule.getActivity();
         Mockito.verify(mHomeApi).getHomeDataAsync(Matchers.<Callback<HomeDataModel>>any());
-        assertSame(mHomeApi, mHomeActivity.mHomeApi);
+        assertSame(mHomeApi, mHomeActivity.homeApi);
         final HomeDataModel dummyData = getDummyData();
         mHomeActivity.runOnUiThread(new Runnable() {
             @Override
@@ -84,7 +77,7 @@ public class HomeActivityTest {
         mActivityTestRule.launchActivity(new Intent());
         mHomeActivity = mActivityTestRule.getActivity();
         Mockito.verify(mHomeApi).getHomeDataAsync(Matchers.<Callback<HomeDataModel>>any());
-        assertSame(mHomeApi, mHomeActivity.mHomeApi);
+        assertSame(mHomeApi, mHomeActivity.homeApi);
         final HomeDataModel dummyData = getDummyData();
         dummyData.getClients().clear();
         mHomeActivity.runOnUiThread(new Runnable() {

@@ -5,7 +5,7 @@ package com.rajeshbatth.android_testing.utils;
  */
 public interface TaskListener {
 
-    void onTaskStarted();
+  void onTaskStarted();
 
-    void onTaskEnded();
+  void onTaskEnded();
 }

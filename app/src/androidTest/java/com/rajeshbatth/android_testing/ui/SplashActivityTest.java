@@ -3,12 +3,10 @@ package com.rajeshbatth.android_testing.ui;
 import android.support.test.espresso.Espresso;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-
 import com.rajeshbatth.android_testing.MyIdlingResource;
 import com.rajeshbatth.android_testing.R;
 import com.rajeshbatth.android_testing.TestUtils;
 import com.rajeshbatth.android_testing.account.AccountsManager;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -45,7 +43,7 @@ public class SplashActivityTest {
 
         SplashActivity activity = mActivityTestRule.getActivity();
         AccountsManager accountsManager = Mockito.mock(AccountsManager.class);
-        activity.mAccountsManager = accountsManager;
+        activity.accountsManager = accountsManager;
 
         Mockito.when(accountsManager.isUserLoggedIn()).thenReturn(false);
         TestUtils.safeSleep(5000); //I want this code gone
@@ -56,9 +54,9 @@ public class SplashActivityTest {
    /* @Test
     public void testHomeActivityLaunch() {
 
-        SplashActivity activity = mActivityTestRule.getActivity();
+        SplashActivity activity = intentsTestRule.getActivity();
         AccountsManager accountsManager = Mockito.mock(AccountsManager.class);
-        activity.mAccountsManager = accountsManager;
+        activity.accountsManager = accountsManager;
 
         Mockito.when(accountsManager.isUserLoggedIn()).thenReturn(true);
         TestUtils.safeSleep(5000); //I want this code gone

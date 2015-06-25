@@ -1,8 +1,10 @@
 package com.rajeshbatth.android_testing.ui;
 
-
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
+import com.rajeshbatth.android_testing.BaseApplication;
+import com.rajeshbatth.android_testing.di.components.ApplicationComponent;
+import com.rajeshbatth.android_testing.di.module.ActivityModule;
 import com.rajeshbatth.android_testing.utils.TaskListener;
 
 /**
@@ -10,26 +12,37 @@ import com.rajeshbatth.android_testing.utils.TaskListener;
  * Date: 21-Jun-2015.
  */
 public class BaseActivity extends AppCompatActivity {
-    protected TaskListener mTaskListener;
+  protected TaskListener taskListener;
 
-    private boolean mIsRunning;
+  private boolean isRunning;
 
-    public void setTaskListener(TaskListener taskListener) {
-        mTaskListener = taskListener;
-        if (mIsRunning && mTaskListener != null) {
-            mTaskListener.onTaskStarted();
-        }
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+  }
+
+  protected ApplicationComponent getApplicationComponent() {
+    return ((BaseApplication) getApplication()).getApplicationComponent();
+  }
+
+  protected ActivityModule getActivityModule() {
+    return new ActivityModule(this);
+  }
+
+  public void setTaskListener(TaskListener taskListener) {
+    this.taskListener = taskListener;
+    if (isRunning && this.taskListener != null) {
+      this.taskListener.onTaskStarted();
     }
+  }
 
-    public void setTaskRunning(boolean isRunning) {
-        if (mTaskListener != null) {
-            mIsRunning = isRunning;
-            if (mIsRunning) {
-                mTaskListener.onTaskStarted();
-            }
-            else {
-                mTaskListener.onTaskEnded();
-            }
-        }
+  public void setTaskRunning(boolean isRunning) {
+    if (taskListener != null) {
+      this.isRunning = isRunning;
+      if (this.isRunning) {
+        taskListener.onTaskStarted();
+      } else {
+        taskListener.onTaskEnded();
+      }
     }
+  }
 }

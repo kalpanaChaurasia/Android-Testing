@@ -1,7 +1,6 @@
 package com.rajeshbatth.android_testing;
 
 import android.support.test.espresso.IdlingResource;
-
 import com.rajeshbatth.android_testing.utils.TaskListener;
 
 /**
