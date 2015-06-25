@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnItemClick;
 import com.rajeshbatth.android_testing.R;
+import com.rajeshbatth.android_testing.account.AccountsManager;
 import com.rajeshbatth.android_testing.adapter.ClientsAdapter;
 import com.rajeshbatth.android_testing.api.HomeApi;
 import com.rajeshbatth.android_testing.di.components.HomeComponent;
@@ -28,6 +31,8 @@ public class HomeActivity extends BaseActivity {
   @InjectView(R.id.clients_listview) ListView clientsListView;
 
   @Inject HomeApi homeApi;
+
+  @Inject AccountsManager accountsManager;
 
   @InjectView(R.id.empty_text) AppCompatTextView emptyText;
 
@@ -73,5 +78,19 @@ public class HomeActivity extends BaseActivity {
     homeApi.getHomeDataAsync(mCallback);
     progressDialog = ProgressDialog.show(this, null, "Loading...", false, false);
     setTaskRunning(true);
+  }
+
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.menu_home, menu);
+    return super.onCreateOptionsMenu(menu);
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.action_logout:
+        accountsManager.logout();
+        return true;
+    }
+    return super.onOptionsItemSelected(item);
   }
 }

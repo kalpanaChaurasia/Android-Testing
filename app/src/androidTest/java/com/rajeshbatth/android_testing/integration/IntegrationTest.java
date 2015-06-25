@@ -18,6 +18,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static com.rajeshbatth.android_testing.TestUtils.matchToolbarTitle;
 import static com.rajeshbatth.android_testing.TestUtils.safeSleep;
 import static org.hamcrest.core.IsAnything.anything;
+import static org.junit.Assert.fail;
 
 /**
  * Created by rajesh.j on 6/25/2015.
@@ -52,5 +53,13 @@ import static org.hamcrest.core.IsAnything.anything;
     matchToolbarTitle(activity.getString(R.string.home));
     onData(anything()).inAdapterView(withId(R.id.clients_listview)).atPosition(0).perform(click());
     matchToolbarTitle(activity.getString(R.string.client_details));
+  }
+
+  @Test public void test3Logout() {
+    safeSleep(2000);
+    matchToolbarTitle(activity.getString(R.string.home));
+    //do logout menu click
+    fail();
+    matchToolbarTitle(activity.getString(R.string.sign_in));
   }
 }

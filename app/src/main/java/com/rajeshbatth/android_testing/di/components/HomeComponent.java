@@ -1,7 +1,9 @@
 package com.rajeshbatth.android_testing.di.components;
 
 import android.content.Context;
+import com.rajeshbatth.android_testing.account.AccountsManager;
 import com.rajeshbatth.android_testing.api.HomeApi;
+import com.rajeshbatth.android_testing.di.module.AccountsModule;
 import com.rajeshbatth.android_testing.di.module.ApiModule;
 import com.rajeshbatth.android_testing.di.scope.PerActivity;
 import com.rajeshbatth.android_testing.ui.HomeActivity;
@@ -11,10 +13,13 @@ import java.lang.ref.WeakReference;
 /**
  * Created by rajesh.j on 6/19/2015.
  */
-@PerActivity
-@Component(dependencies = { ApplicationComponent.class }, modules = { ApiModule.class })
-public interface HomeComponent {
+@PerActivity @Component(dependencies = { ApplicationComponent.class }, modules = {
+    ApiModule.class, AccountsModule.class
+}) public interface HomeComponent {
+
   HomeApi provideHomeApi();
+
+  AccountsManager provideAccountsManager();
 
   void inject(HomeActivity homeActivity);
 
