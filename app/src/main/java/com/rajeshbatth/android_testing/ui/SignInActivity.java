@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -42,7 +43,7 @@ public class SignInActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sign_in);
     ButterKnife.inject(this);
-    AccountsComponent.Injector.getAccountsComponent(this).inject(this);
+    AccountsComponent.Holder.getAccountsComponent(this).inject(this);
     setSupportActionBar(toolbar);
     setTitle(R.string.sign_in);
   }
@@ -60,9 +61,8 @@ public class SignInActivity extends AppCompatActivity {
         }
 
         @Override public void failure(RetrofitError error) {
+          Toast.makeText(SignInActivity.this, "Auth failure", Toast.LENGTH_SHORT).show();
           onUserAuthenticated(params);
-          //                    Toast.makeText(SignInActivity.this, "Auth failure", Toast.LENGTH_SHORT)
-          // .show();
         }
       });
     }

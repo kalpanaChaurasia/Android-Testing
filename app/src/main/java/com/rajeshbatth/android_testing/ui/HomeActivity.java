@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnItemClick;
 import com.rajeshbatth.android_testing.R;
 import com.rajeshbatth.android_testing.adapter.ClientsAdapter;
 import com.rajeshbatth.android_testing.api.HomeApi;
@@ -55,12 +56,17 @@ public class HomeActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_home);
     ButterKnife.inject(this);
-    HomeComponent.Injector.getHomeComponent(this).inject(this);
+    HomeComponent.Holder.getHomeComponent(this).inject(this);
     setSupportActionBar(toolbar);
     setTitle(getString(R.string.home));
     adapter = new ClientsAdapter(clientList);
     clientsListView.setAdapter(adapter);
     fetchClients();
+  }
+
+  @OnItemClick(R.id.clients_listview) void onClientClicked(int position) {
+    Client client = clientList.get(position);
+    ClientDetailActivity.startClientDetailsActivity(this, client);
   }
 
   private void fetchClients() {

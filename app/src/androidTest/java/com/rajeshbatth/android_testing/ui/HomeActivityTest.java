@@ -5,26 +5,22 @@ import android.support.annotation.NonNull;
 import android.support.test.espresso.Espresso;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-
 import com.rajeshbatth.android_testing.MyIdlingResource;
 import com.rajeshbatth.android_testing.api.HomeApi;
 import com.rajeshbatth.android_testing.di.components.DaggerTestHomeComponent;
+import com.rajeshbatth.android_testing.di.components.HomeComponent;
 import com.rajeshbatth.android_testing.di.components.TestHomeComponent;
 import com.rajeshbatth.android_testing.model.Client;
 import com.rajeshbatth.android_testing.model.HomeDataModel;
-
+import java.util.ArrayList;
+import java.util.List;
+import javax.inject.Inject;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import retrofit.Callback;
 
 import static junit.framework.Assert.assertSame;
@@ -49,7 +45,7 @@ public class HomeActivityTest {
         TestHomeComponent testHomeComponent = DaggerTestHomeComponent
                 .builder()
                 .build();
-        TestHomeComponent.Injector.setHomeComponent(testHomeComponent);
+        HomeComponent.Holder.setHomeComponent(testHomeComponent);
         testHomeComponent.inject(this);
     }
 

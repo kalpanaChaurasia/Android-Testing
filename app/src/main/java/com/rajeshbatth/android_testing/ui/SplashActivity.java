@@ -31,6 +31,9 @@ public class SplashActivity extends BaseActivity {
   }
 
   private void launchNextActivity() {
+    if (isFinishing()) {
+      return; //the User has closed app
+    }
     finish();
     if (accountsManager.isUserLoggedIn()) {
       startActivity(new Intent(SplashActivity.this, HomeActivity.class));

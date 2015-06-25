@@ -2,36 +2,38 @@ package com.rajeshbatth.android_testing.di.components;
 
 import android.content.Context;
 import com.rajeshbatth.android_testing.api.HomeApi;
-import com.rajeshbatth.android_testing.di.module.NetworkModule;
+import com.rajeshbatth.android_testing.di.module.ApiModule;
 import com.rajeshbatth.android_testing.di.scope.PerActivity;
 import com.rajeshbatth.android_testing.ui.HomeActivity;
 import dagger.Component;
+import java.lang.ref.WeakReference;
 
 /**
  * Created by rajesh.j on 6/19/2015.
  */
 @PerActivity
-@Component(dependencies = { ApplicationComponent.class }, modules = { NetworkModule.class })
+@Component(dependencies = { ApplicationComponent.class }, modules = { ApiModule.class })
 public interface HomeComponent {
   HomeApi provideHomeApi();
 
   void inject(HomeActivity homeActivity);
 
-  class Injector {
+  class Holder {
 
-    static HomeComponent sHomeComponent;
+    static WeakReference<HomeComponent> homeComponentWeakRef;
 
     public static HomeComponent getHomeComponent(Context context) {
-      if (sHomeComponent == null) {
-        sHomeComponent = DaggerHomeComponent.builder()
-            .applicationComponent(ApplicationComponent.Injector.getApplicationComponent(context))
+      if (homeComponentWeakRef == null || homeComponentWeakRef.get() == null) {
+        HomeComponent homeComponent = DaggerHomeComponent.builder()
+            .applicationComponent(ApplicationComponent.Holder.getApplicationComponent(context))
             .build();
+        homeComponentWeakRef = new WeakReference<>(homeComponent);
       }
-      return sHomeComponent;
+      return homeComponentWeakRef.get();
     }
 
     public static void setHomeComponent(HomeComponent homeComponent) {
-      sHomeComponent = homeComponent;
+      homeComponentWeakRef = new WeakReference<>(homeComponent);
     }
   }
 }

@@ -4,7 +4,6 @@ import com.rajeshbatth.android_testing.account.AccountsManager;
 import com.rajeshbatth.android_testing.di.module.TestAccountsModule;
 import com.rajeshbatth.android_testing.di.scope.PerActivity;
 import com.rajeshbatth.android_testing.ui.SplashActivityTest;
-
 import dagger.Component;
 
 /**

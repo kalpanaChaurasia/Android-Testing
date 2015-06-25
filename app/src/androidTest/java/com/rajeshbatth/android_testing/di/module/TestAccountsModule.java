@@ -1,11 +1,9 @@
 package com.rajeshbatth.android_testing.di.module;
 
 import com.rajeshbatth.android_testing.account.AccountsManager;
-
-import org.mockito.Mockito;
-
 import dagger.Module;
 import dagger.Provides;
+import org.mockito.Mockito;
 
 /**
  * Author: Rajesh Batth

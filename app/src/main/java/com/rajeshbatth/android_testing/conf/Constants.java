@@ -8,7 +8,7 @@ import com.rajeshbatth.android_testing.BuildConfig;
 public class Constants {
 
   /**
-   * Duration for which SplashActivity will apear and then launch next activity.
+   * Duration for which SplashActivity will appear and then launch next activity.
    * For Debug builds it is 1 second and for others its 3 seconds
    */
   public static final int SPLASH_DURATION = BuildConfig.DEBUG ? 1000 : 3000;

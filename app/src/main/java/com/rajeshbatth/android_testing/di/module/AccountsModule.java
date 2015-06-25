@@ -12,7 +12,7 @@ import dagger.Provides;
  */
 @Module public class AccountsModule {
 
-  @Provides @PerActivity AccountsManager provideAccountsManager(
+  @PerActivity @Provides AccountsManager provideAccountsManager(
       SharedPreferences sharedPreferences) {
     return new AccountsManager(sharedPreferences);
   }

@@ -3,7 +3,6 @@ package com.rajeshbatth.android_testing.di.module;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
-import com.facebook.stetho.okhttp.StethoInterceptor;
 import com.rajeshbatth.android_testing.conf.Constants;
 import com.squareup.okhttp.OkHttpClient;
 import dagger.Module;
@@ -34,7 +33,6 @@ import retrofit.client.OkClient;
 
   @Singleton @Provides public OkHttpClient provideHttpClient() {
     OkHttpClient client = new OkHttpClient();
-    client.networkInterceptors().add(new StethoInterceptor());
     return client;
   }
 

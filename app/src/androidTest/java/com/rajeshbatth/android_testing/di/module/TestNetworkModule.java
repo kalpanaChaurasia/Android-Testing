@@ -2,11 +2,9 @@ package com.rajeshbatth.android_testing.di.module;
 
 import com.rajeshbatth.android_testing.api.HomeApi;
 import com.rajeshbatth.android_testing.di.scope.PerActivity;
-
-import org.mockito.Mockito;
-
 import dagger.Module;
 import dagger.Provides;
+import org.mockito.Mockito;
 import retrofit.RestAdapter;
 
 /**
