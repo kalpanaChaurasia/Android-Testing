@@ -1,6 +1,7 @@
 package com.rajeshbatth.android_testing.ui;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.AppCompatTextView;
@@ -26,15 +27,20 @@ import retrofit.client.Response;
 
 public class HomeActivity extends BaseActivity {
 
-  @InjectView(R.id.toolbar) Toolbar toolbar;
+  @InjectView(R.id.toolbar)
+  Toolbar toolbar;
 
-  @InjectView(R.id.clients_listview) ListView clientsListView;
+  @InjectView(R.id.clients_listview)
+  ListView clientsListView;
 
-  @Inject HomeApi homeApi;
+  @Inject
+  HomeApi homeApi;
 
-  @Inject AccountsManager accountsManager;
+  @Inject
+  AccountsManager accountsManager;
 
-  @InjectView(R.id.empty_text) AppCompatTextView emptyText;
+  @InjectView(R.id.empty_text)
+  AppCompatTextView emptyText;
 
   private ClientsAdapter adapter;
 
@@ -42,8 +48,10 @@ public class HomeActivity extends BaseActivity {
 
   private ArrayList<Client> clientList = new ArrayList<>();
 
-  @VisibleForTesting Callback<HomeDataModel> mCallback = new Callback<HomeDataModel>() {
-    @Override public void success(HomeDataModel homeDataModel, Response response) {
+  @VisibleForTesting
+  Callback<HomeDataModel> mCallback = new Callback<HomeDataModel>() {
+    @Override
+    public void success(HomeDataModel homeDataModel, Response response) {
       clientList.clear();
       clientList.addAll(homeDataModel.getClients());
       adapter.notifyDataSetChanged();
@@ -51,13 +59,15 @@ public class HomeActivity extends BaseActivity {
       progressDialog.dismiss();
     }
 
-    @Override public void failure(RetrofitError error) {
+    @Override
+    public void failure(RetrofitError error) {
       setTaskRunning(false);
       progressDialog.dismiss();
     }
   };
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_home);
     ButterKnife.inject(this);
@@ -69,7 +79,8 @@ public class HomeActivity extends BaseActivity {
     fetchClients();
   }
 
-  @OnItemClick(R.id.clients_listview) void onClientClicked(int position) {
+  @OnItemClick(R.id.clients_listview)
+  void onClientClicked(int position) {
     Client client = clientList.get(position);
     ClientDetailActivity.startClientDetailsActivity(this, client);
   }
@@ -80,17 +91,25 @@ public class HomeActivity extends BaseActivity {
     setTaskRunning(true);
   }
 
-  @Override public boolean onCreateOptionsMenu(Menu menu) {
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_home, menu);
     return super.onCreateOptionsMenu(menu);
   }
 
-  @Override public boolean onOptionsItemSelected(MenuItem item) {
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.action_logout:
-        accountsManager.logout();
+        logout();
         return true;
     }
     return super.onOptionsItemSelected(item);
+  }
+
+  private void logout() {
+    accountsManager.logout();
+    finish();
+    startActivity(new Intent(this, SignInActivity.class));
   }
 }

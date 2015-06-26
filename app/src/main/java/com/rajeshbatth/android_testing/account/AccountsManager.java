@@ -16,7 +16,8 @@ public class AccountsManager {
   final SharedPreferences sharedPreferences;
   private User currentUser;
 
-  @Inject public AccountsManager(SharedPreferences sharedPreferences) {
+  @Inject
+  public AccountsManager(SharedPreferences sharedPreferences) {
     this.sharedPreferences = sharedPreferences;
   }
 

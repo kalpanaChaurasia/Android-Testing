@@ -11,7 +11,9 @@ import retrofit.http.POST;
  */
 public interface AccountsApi {
 
-  @POST("") void register(UserRequestParams params);
+  @POST("")
+  void register(UserRequestParams params);
 
-  @POST("") void login(UserRequestParams params, Callback<AuthResponse> responseCallback);
+  @POST("")
+  void login(UserRequestParams params, Callback<AuthResponse> responseCallback);
 }

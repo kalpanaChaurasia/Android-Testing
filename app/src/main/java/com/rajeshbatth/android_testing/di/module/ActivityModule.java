@@ -9,7 +9,8 @@ import dagger.Provides;
  * Author: Rajesh Batth
  * Date: 24-Jun-2015.
  */
-@Module public class ActivityModule {
+@Module
+public class ActivityModule {
 
   private final AppCompatActivity mAppCompatActivity;
 
@@ -17,7 +18,9 @@ import dagger.Provides;
     mAppCompatActivity = appCompatActivity;
   }
 
-  @Provides @PerActivity public AppCompatActivity provideAppCompatActivity() {
+  @Provides
+  @PerActivity
+  public AppCompatActivity provideAppCompatActivity() {
     return mAppCompatActivity;
   }
 }

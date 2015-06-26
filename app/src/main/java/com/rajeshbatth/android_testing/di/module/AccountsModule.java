@@ -10,10 +10,12 @@ import dagger.Provides;
  * Author: Rajesh Batth
  * Date: 20-Jun-2015.
  */
-@Module public class AccountsModule {
+@Module
+public class AccountsModule {
 
-  @PerActivity @Provides AccountsManager provideAccountsManager(
-      SharedPreferences sharedPreferences) {
+  @PerActivity
+  @Provides
+  AccountsManager provideAccountsManager(SharedPreferences sharedPreferences) {
     return new AccountsManager(sharedPreferences);
   }
 }

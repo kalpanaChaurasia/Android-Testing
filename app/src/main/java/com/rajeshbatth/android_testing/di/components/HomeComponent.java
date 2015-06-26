@@ -13,9 +13,11 @@ import java.lang.ref.WeakReference;
 /**
  * Created by rajesh.j on 6/19/2015.
  */
-@PerActivity @Component(dependencies = { ApplicationComponent.class }, modules = {
+@PerActivity
+@Component(dependencies = { ApplicationComponent.class }, modules = {
     ApiModule.class, AccountsModule.class
-}) public interface HomeComponent {
+})
+public interface HomeComponent {
 
   HomeApi provideHomeApi();
 

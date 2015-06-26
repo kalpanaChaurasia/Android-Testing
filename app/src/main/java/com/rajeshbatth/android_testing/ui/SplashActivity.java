@@ -12,9 +12,11 @@ import javax.inject.Inject;
 
 public class SplashActivity extends BaseActivity {
 
-  @Inject AccountsManager accountsManager;
+  @Inject
+  AccountsManager accountsManager;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_splash);
     ButterKnife.inject(this);
@@ -24,7 +26,8 @@ public class SplashActivity extends BaseActivity {
 
   void launchWithDelay() {
     new Handler().postDelayed(new Runnable() {
-      @Override public void run() {
+      @Override
+      public void run() {
         launchNextActivity();
       }
     }, Constants.SPLASH_DURATION);

@@ -15,7 +15,8 @@ import retrofit.client.OkClient;
  * Author: Rajesh Batth
  * Date: 19-Jun-2015.
  */
-@Module public class ApplicationModule {
+@Module
+public class ApplicationModule {
 
   final Context mAppContext;
 
@@ -23,20 +24,28 @@ import retrofit.client.OkClient;
     mAppContext = appContext;
   }
 
-  @Provides @Singleton public Context provideAppContext() {
+  @Provides
+  @Singleton
+  public Context provideAppContext() {
     return mAppContext;
   }
 
-  @Provides @Singleton public SharedPreferences provideSharedPreferences() {
+  @Provides
+  @Singleton
+  public SharedPreferences provideSharedPreferences() {
     return mAppContext.getSharedPreferences(Constants.Prefs.NAME, Context.MODE_PRIVATE);
   }
 
-  @Singleton @Provides public OkHttpClient provideHttpClient() {
+  @Singleton
+  @Provides
+  public OkHttpClient provideHttpClient() {
     OkHttpClient client = new OkHttpClient();
     return client;
   }
 
-  @Singleton @Provides public RestAdapter provideRestAdapter(OkHttpClient httpClient) {
+  @Singleton
+  @Provides
+  public RestAdapter provideRestAdapter(OkHttpClient httpClient) {
     return new RestAdapter.Builder().setClient(new OkClient(httpClient))
         .setEndpoint(Constants.Urls.API_HOST)
         .build();

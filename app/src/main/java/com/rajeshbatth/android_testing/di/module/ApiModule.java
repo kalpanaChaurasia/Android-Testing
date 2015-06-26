@@ -10,13 +10,18 @@ import retrofit.RestAdapter;
 /**
  * Created by rajesh.j on 6/19/2015.
  */
-@Module public class ApiModule {
+@Module
+public class ApiModule {
 
-  @PerActivity @Provides public HomeApi provideHomeApi(RestAdapter restAdapter) {
+  @PerActivity
+  @Provides
+  public HomeApi provideHomeApi(RestAdapter restAdapter) {
     return restAdapter.create(HomeApi.class);
   }
 
-  @PerActivity @Provides public AccountsApi provideAccountsApi(RestAdapter restAdapter) {
+  @PerActivity
+  @Provides
+  public AccountsApi provideAccountsApi(RestAdapter restAdapter) {
     return restAdapter.create(AccountsApi.class);
   }
 }

@@ -14,25 +14,35 @@ import com.rajeshbatth.android_testing.R;
 
 public class SignUpActivity extends AppCompatActivity {
 
-  @InjectView(R.id.toolbar) Toolbar toolbar;
+  @InjectView(R.id.toolbar)
+  Toolbar toolbar;
 
-  @InjectView(R.id.username) AppCompatEditText username;
+  @InjectView(R.id.username)
+  AppCompatEditText username;
 
-  @InjectView(R.id.username_layout) TextInputLayout usernameLayout;
+  @InjectView(R.id.username_layout)
+  TextInputLayout usernameLayout;
 
-  @InjectView(R.id.email) AppCompatEditText email;
+  @InjectView(R.id.email)
+  AppCompatEditText email;
 
-  @InjectView(R.id.email_layout) TextInputLayout emailLayout;
+  @InjectView(R.id.email_layout)
+  TextInputLayout emailLayout;
 
-  @InjectView(R.id.password) AppCompatEditText password;
+  @InjectView(R.id.password)
+  AppCompatEditText password;
 
-  @InjectView(R.id.password_layout) TextInputLayout passwordLayout;
+  @InjectView(R.id.password_layout)
+  TextInputLayout passwordLayout;
 
-  @InjectView(R.id.confirm_password) AppCompatEditText confirmPassword;
+  @InjectView(R.id.confirm_password)
+  AppCompatEditText confirmPassword;
 
-  @InjectView(R.id.confirm_password_layout) TextInputLayout confirmPasswordLayout;
+  @InjectView(R.id.confirm_password_layout)
+  TextInputLayout confirmPasswordLayout;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sign_up);
     ButterKnife.inject(this);
@@ -40,7 +50,8 @@ public class SignUpActivity extends AppCompatActivity {
     setTitle("Sign Up");
   }
 
-  @OnClick(R.id.submit_button) void onSubmitClicked() {
+  @OnClick(R.id.submit_button)
+  void onSubmitClicked() {
     boolean isValid = validate();
     if (isValid) {
       finish();

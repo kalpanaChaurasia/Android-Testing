@@ -16,9 +16,11 @@ import java.lang.ref.WeakReference;
  * Author: Rajesh Batth
  * Date: 20-Jun-2015.
  */
-@PerActivity @Component(dependencies = { ApplicationComponent.class }, modules = {
+@PerActivity
+@Component(dependencies = { ApplicationComponent.class }, modules = {
     ApiModule.class, AccountsModule.class
-}) public interface AccountsComponent {
+})
+public interface AccountsComponent {
 
   AccountsApi provideAccountsApi();
 
@@ -30,11 +32,9 @@ import java.lang.ref.WeakReference;
 
   class Holder {
 
-    static WeakReference<AccountsComponent> accountsComponentRef;
-    private static Context context;
+    private static WeakReference<AccountsComponent> accountsComponentRef;
 
     public static AccountsComponent getAccountsComponent(Context context) {
-      Holder.context = context;
       if (accountsComponentRef == null || accountsComponentRef.get() == null) {
         AccountsComponent accountsComponent = DaggerAccountsComponent.builder()
             .applicationComponent(BaseApplication.applicationComponent(context))

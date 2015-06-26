@@ -16,7 +16,8 @@ public class BaseActivity extends AppCompatActivity {
 
   private boolean isRunning;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
   }
 

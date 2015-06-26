@@ -29,8 +29,8 @@ public interface SplashComponent {
 
     public static SplashComponent getSplashComponent(Context context) {
       if (componentWeakReference == null || componentWeakReference.get() == null) {
-        SplashComponent splashComponent =
-            DaggerSplashComponent.builder().applicationComponent(applicationComponent(context))
+        SplashComponent splashComponent = DaggerSplashComponent.builder()
+            .applicationComponent(applicationComponent(context))
             .build();
         componentWeakReference = new WeakReference<>(splashComponent);
       }

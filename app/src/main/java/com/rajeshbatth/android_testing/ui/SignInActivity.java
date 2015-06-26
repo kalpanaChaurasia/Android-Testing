@@ -25,21 +25,29 @@ import retrofit.client.Response;
 
 public class SignInActivity extends AppCompatActivity {
 
-  @InjectView(R.id.toolbar) Toolbar toolbar;
+  @InjectView(R.id.toolbar)
+  Toolbar toolbar;
 
-  @InjectView(R.id.email) AppCompatEditText email;
+  @InjectView(R.id.email)
+  AppCompatEditText email;
 
-  @InjectView(R.id.email_layout) TextInputLayout emailLayout;
+  @InjectView(R.id.email_layout)
+  TextInputLayout emailLayout;
 
-  @InjectView(R.id.password) AppCompatEditText password;
+  @InjectView(R.id.password)
+  AppCompatEditText password;
 
-  @InjectView(R.id.password_layout) TextInputLayout passwordLayout;
+  @InjectView(R.id.password_layout)
+  TextInputLayout passwordLayout;
 
-  @Inject AccountsApi accountsApi;
+  @Inject
+  AccountsApi accountsApi;
 
-  @Inject AccountsManager accountsManager;
+  @Inject
+  AccountsManager accountsManager;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sign_in);
     ButterKnife.inject(this);
@@ -48,19 +56,23 @@ public class SignInActivity extends AppCompatActivity {
     setTitle(R.string.sign_in);
   }
 
-  @OnClick(R.id.sign_up) void launchSignUp() {
+  @OnClick(R.id.sign_up)
+  void launchSignUp() {
     startActivity(new Intent(this, SignUpActivity.class));
   }
 
-  @OnClick(R.id.sign_in_button) void signIn() {
+  @OnClick(R.id.sign_in_button)
+  void signIn() {
     final UserRequestParams params = validate();
     if (params != null) {
       accountsApi.login(params, new Callback<AuthResponse>() {
-        @Override public void success(AuthResponse authResponse, Response response) {
+        @Override
+        public void success(AuthResponse authResponse, Response response) {
           onUserAuthenticated(params);
         }
 
-        @Override public void failure(RetrofitError error) {
+        @Override
+        public void failure(RetrofitError error) {
           Toast.makeText(SignInActivity.this, "Auth failure", Toast.LENGTH_SHORT).show();
           onUserAuthenticated(params);
         }

@@ -19,7 +19,8 @@ import javax.inject.Inject;
 public class BaseApplication extends Application {
 
   protected ApplicationComponent applicationComponent;
-  @Inject OkHttpClient okHttpClient;
+  @Inject
+  OkHttpClient okHttpClient;
   private RefWatcher refWatcher;
 
   public static RefWatcher getRefWatcher(Context context) {
@@ -31,7 +32,8 @@ public class BaseApplication extends Application {
     return ((BaseApplication) context.getApplicationContext()).getApplicationComponent();
   }
 
-  @Override public void onCreate() {
+  @Override
+  public void onCreate() {
     super.onCreate();
     ApplicationComponent.Holder.getApplicationComponent(this).inject(this);
     LeakCanary.install(this);

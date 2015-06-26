@@ -23,19 +23,23 @@ public class ClientsAdapter extends BaseAdapter {
     this.clientList = clientList;
   }
 
-  @Override public int getCount() {
+  @Override
+  public int getCount() {
     return clientList.size();
   }
 
-  @Override public Object getItem(int position) {
+  @Override
+  public Object getItem(int position) {
     return clientList.get(position);
   }
 
-  @Override public long getItemId(int position) {
+  @Override
+  public long getItemId(int position) {
     return position;
   }
 
-  @Override public View getView(int position, View convertView, ViewGroup parent) {
+  @Override
+  public View getView(int position, View convertView, ViewGroup parent) {
     if (convertView == null) {
       convertView =
           LayoutInflater.from(parent.getContext()).inflate(R.layout.item_client, parent, false);

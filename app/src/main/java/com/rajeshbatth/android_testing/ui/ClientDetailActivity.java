@@ -11,14 +11,16 @@ import com.rajeshbatth.android_testing.model.Client;
 
 public class ClientDetailActivity extends BaseActivity {
 
-  @InjectView(R.id.toolbar) Toolbar toolbar;
+  @InjectView(R.id.toolbar)
+  Toolbar toolbar;
 
   public static void startClientDetailsActivity(Context context, Client client) {
     Intent intent = new Intent(context, ClientDetailActivity.class);
     context.startActivity(intent);
   }
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_client_detail);
     ButterKnife.inject(this);
