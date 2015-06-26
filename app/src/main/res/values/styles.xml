@@ -1,13 +1,15 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-    </style>
+  <!-- Base application theme. -->
+  <style name="AppTheme"
+      parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Customize your theme here. -->
+  </style>
 
-    <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/main_color</item>
-    </style>
+  <style name="TextAppearence.App.TextInputLayout"
+      parent="@android:style/TextAppearance">
+    <item name="android:textColor">@color/main_color</item>
+  </style>
 
-    <color name="main_color">#000000</color>
+  <color name="main_color">#000000</color>
 </resources>
