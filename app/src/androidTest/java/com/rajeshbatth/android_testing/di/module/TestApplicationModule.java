@@ -19,40 +19,37 @@ import retrofit.client.OkClient;
 @Module
 public class TestApplicationModule {
 
-    final Context mAppContext;
+  final Context mAppContext;
 
-    public TestApplicationModule(@NonNull Context appContext) {
-        mAppContext = appContext.getApplicationContext();
-    }
+  public TestApplicationModule(@NonNull Context appContext) {
+    mAppContext = appContext.getApplicationContext();
+  }
 
-    @Provides
-    @Singleton
-    public Context provideAppContext() {
-        return mAppContext;
-    }
+  @Provides
+  @Singleton
+  public Context provideAppContext() {
+    return mAppContext;
+  }
 
-    @Provides
-    @Singleton
-    public SharedPreferences provideSharedPreferences() {
-        return Mockito.mock(SharedPreferences.class);
-    }
+  @Provides
+  @Singleton
+  public SharedPreferences provideSharedPreferences() {
+    return Mockito.mock(SharedPreferences.class);
+  }
 
+  @Singleton
+  @Provides
+  public OkHttpClient provideHttpClient() {
+    OkHttpClient client = new OkHttpClient();
+    client.networkInterceptors().add(new StethoInterceptor());
+    return client;
+  }
 
-    @Singleton
-    @Provides
-    public OkHttpClient provideHttpClient() {
-        OkHttpClient client = new OkHttpClient();
-        client.networkInterceptors().add(new StethoInterceptor());
-        return client;
-    }
-
-    @Singleton
-    @Provides
-    public RestAdapter provideRestAdapter(OkHttpClient httpClient) {
-        return new RestAdapter.Builder()
-                .setClient(new OkClient(httpClient))
-                .setEndpoint(Constants.Urls.API_HOST)
-                .build();
-    }
-
+  @Singleton
+  @Provides
+  public RestAdapter provideRestAdapter(OkHttpClient httpClient) {
+    return new RestAdapter.Builder().setClient(new OkClient(httpClient))
+        .setEndpoint(Constants.Urls.API_HOST)
+        .build();
+  }
 }

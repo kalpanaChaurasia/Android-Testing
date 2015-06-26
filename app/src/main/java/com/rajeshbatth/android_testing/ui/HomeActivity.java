@@ -99,10 +99,9 @@ public class HomeActivity extends BaseActivity {
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.action_logout:
-        logout();
-        return true;
+    if (item.getItemId() == R.id.action_logout) {
+      logout();
+      return true;
     }
     return super.onOptionsItemSelected(item);
   }

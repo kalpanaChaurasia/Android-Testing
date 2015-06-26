@@ -15,7 +15,10 @@ import static org.hamcrest.Matchers.allOf;
  * Author: Rajesh Batth
  * Date: 19-Jun-2015.
  */
-public class TestUtils {
+public abstract class TestUtils {
+
+  public static final int SLEEP_INTERVAL_SMALL = 100;
+  public static final int SLEEP_INTERVAL_MEDIUM = 200;
 
   public static void safeSleep(int time) {
     try {

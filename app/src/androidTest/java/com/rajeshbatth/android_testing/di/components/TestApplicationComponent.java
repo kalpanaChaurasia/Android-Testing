@@ -8,7 +8,7 @@ import javax.inject.Singleton;
  * Created by rajesh.j on 6/24/2015.
  */
 @Singleton
-@Component(modules = {TestApplicationModule.class})
+@Component(modules = { TestApplicationModule.class })
 public interface TestApplicationComponent extends ApplicationComponent {
 
 }

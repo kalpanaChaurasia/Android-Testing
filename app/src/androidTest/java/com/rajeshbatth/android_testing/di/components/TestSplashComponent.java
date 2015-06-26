@@ -11,11 +11,10 @@ import dagger.Component;
  * Date: 19-Jun-2015.
  */
 @PerActivity
-@Component(dependencies = {ApplicationComponent.class}, modules = {TestAccountsModule.class})
+@Component(dependencies = { ApplicationComponent.class }, modules = { TestAccountsModule.class })
 public interface TestSplashComponent extends SplashComponent {
 
-    AccountsManager provideAccountsManager();
+  AccountsManager provideAccountsManager();
 
-    void inject(SplashActivityTest splashActivityTest);
-
+  void inject(SplashActivityTest splashActivityTest);
 }

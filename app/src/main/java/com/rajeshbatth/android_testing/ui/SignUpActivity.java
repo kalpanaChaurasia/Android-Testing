@@ -87,7 +87,7 @@ public class SignUpActivity extends AppCompatActivity {
       return false;
     }
 
-    if (password.length() < 6) {
+    if (password.length() < SignInActivity.PASSWORD_MIN_LENGTH) {
       passwordLayout.setError("Password should be of minimum 6 characters");
       this.password.requestFocus();
       return false;

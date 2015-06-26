@@ -9,7 +9,7 @@ import dagger.Component;
  * Created by rajesh.j on 6/19/2015.
  */
 @PerActivity
-@Component(dependencies = {TestApplicationComponent.class}, modules = {TestNetworkModule.class})
+@Component(dependencies = { TestApplicationComponent.class }, modules = { TestNetworkModule.class })
 public interface TestHomeComponent extends HomeComponent {
-    void inject(HomeActivityTest homeActivity);
+  void inject(HomeActivityTest homeActivity);
 }
