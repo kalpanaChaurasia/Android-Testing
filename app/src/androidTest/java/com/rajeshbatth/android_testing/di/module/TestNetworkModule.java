@@ -13,9 +13,9 @@ import retrofit.RestAdapter;
 @Module
 public class TestNetworkModule {
 
-    @PerActivity
-    @Provides
-    public HomeApi provideHomeApi(RestAdapter restAdapter) {
-        return Mockito.mock(HomeApi.class);
-    }
+  @PerActivity
+  @Provides
+  public HomeApi provideHomeApi(RestAdapter restAdapter) {
+    return Mockito.mock(HomeApi.class);
+  }
 }

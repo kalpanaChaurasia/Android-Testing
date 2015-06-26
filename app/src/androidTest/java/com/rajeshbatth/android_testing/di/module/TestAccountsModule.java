@@ -11,8 +11,8 @@ import org.mockito.Mockito;
  */
 @Module
 public class TestAccountsModule {
-    @Provides
-    public AccountsManager provideAccountsManager(){
-        return Mockito.mock(AccountsManager.class);
-    }
+  @Provides
+  public AccountsManager provideAccountsManager() {
+    return Mockito.mock(AccountsManager.class);
+  }
 }

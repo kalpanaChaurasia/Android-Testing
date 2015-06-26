@@ -7,6 +7,7 @@ import com.rajeshbatth.android_testing.MyIdlingResource;
 import com.rajeshbatth.android_testing.R;
 import com.rajeshbatth.android_testing.TestUtils;
 import com.rajeshbatth.android_testing.account.AccountsManager;
+import com.rajeshbatth.android_testing.conf.Constants;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -25,31 +26,30 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 @RunWith(AndroidJUnit4.class)
 public class SplashActivityTest {
 
-    @Rule
-    public ActivityTestRule<SplashActivity> mActivityTestRule = new ActivityTestRule<>(
-            SplashActivity.class);
+  @Rule
+  public ActivityTestRule<SplashActivity> mActivityTestRule =
+      new ActivityTestRule<>(SplashActivity.class);
 
-    @Before
-    public void setUp() {
-        MyIdlingResource idlingResource = new MyIdlingResource();
-        SplashActivity activity = mActivityTestRule.getActivity();
-        activity.setTaskListener(idlingResource);
-        Espresso.registerIdlingResources(idlingResource);
-    }
+  @Before
+  public void setUp() {
+    MyIdlingResource idlingResource = new MyIdlingResource();
+    SplashActivity activity = mActivityTestRule.getActivity();
+    activity.setTaskListener(idlingResource);
+    Espresso.registerIdlingResources(idlingResource);
+  }
 
+  @Test
+  public void testSignInActivityLaunch() {
 
-    @Test
-    public void testSignInActivityLaunch() {
+    SplashActivity activity = mActivityTestRule.getActivity();
+    AccountsManager accountsManager = Mockito.mock(AccountsManager.class);
+    activity.accountsManager = accountsManager;
 
-        SplashActivity activity = mActivityTestRule.getActivity();
-        AccountsManager accountsManager = Mockito.mock(AccountsManager.class);
-        activity.accountsManager = accountsManager;
-
-        Mockito.when(accountsManager.isUserLoggedIn()).thenReturn(false);
-        TestUtils.safeSleep(5000); //I want this code gone
-        Mockito.verify(accountsManager).isUserLoggedIn();
-        onView(withId(R.id.sign_in_button)).check(matches(isDisplayed()));
-    }
+    Mockito.when(accountsManager.isUserLoggedIn()).thenReturn(false);
+    TestUtils.safeSleep(Constants.SPLASH_DURATION); //I want this code gone
+    Mockito.verify(accountsManager).isUserLoggedIn();
+    onView(withId(R.id.sign_in_button)).check(matches(isDisplayed()));
+  }
 
    /* @Test
     public void testHomeActivityLaunch() {

@@ -25,6 +25,8 @@ import retrofit.client.Response;
 
 public class SignInActivity extends AppCompatActivity {
 
+  public static final int PASSWORD_MIN_LENGTH = 6;
+
   @InjectView(R.id.toolbar)
   Toolbar toolbar;
 
@@ -113,7 +115,7 @@ public class SignInActivity extends AppCompatActivity {
       return null;
     }
 
-    if (password.length() < 6) {
+    if (password.length() < PASSWORD_MIN_LENGTH) {
       passwordLayout.setError(getString(R.string.error_password_min_len));
       this.password.requestFocus();
       return null;

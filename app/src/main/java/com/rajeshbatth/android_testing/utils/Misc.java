@@ -7,7 +7,10 @@ import java.util.regex.Pattern;
  * Author: Rajesh Batth
  * Date: 18-Jun-2015.
  */
-public class Misc {
+public final class Misc {
+
+  private Misc() {
+  }
 
   private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
       + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
