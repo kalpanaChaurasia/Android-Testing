@@ -3,27 +3,19 @@ package com.rajeshbatth.android_testing.core.auth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import com.rajeshbatth.android_testing.R;
 import com.rajeshbatth.android_testing.account.AccountsManager;
 import com.rajeshbatth.android_testing.api.AccountsApi;
+import com.rajeshbatth.android_testing.core.BaseActivity;
 import com.rajeshbatth.android_testing.core.home.HomeActivity;
-import com.rajeshbatth.android_testing.model.User;
-import com.rajeshbatth.android_testing.model.http.AuthResponse;
-import com.rajeshbatth.android_testing.model.http.UserRequestParams;
 import javax.inject.Inject;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignInActivity extends BaseActivity implements SignInPresenter.SignInCallbacks {
 
   public static final int PASSWORD_MIN_LENGTH = 6;
 
@@ -48,14 +40,22 @@ public class SignInActivity extends AppCompatActivity {
   @Inject
   AccountsManager accountsManager;
 
+  private SignInPresenter presenter;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sign_in);
     ButterKnife.inject(this);
     AccountsComponent.Holder.getAccountsComponent(this).inject(this);
+    presenter = new SignInPresenter(accountsManager, accountsApi, this);
     setSupportActionBar(toolbar);
     setTitle(R.string.sign_in);
+  }
+
+  @OnClick(R.id.sign_in_button)
+  void signIn() {
+    presenter.submit();
   }
 
   @OnClick(R.id.sign_up)
@@ -63,66 +63,49 @@ public class SignInActivity extends AppCompatActivity {
     startActivity(new Intent(this, SignUpActivity.class));
   }
 
-  @OnClick(R.id.sign_in_button)
-  void signIn() {
-    final UserRequestParams params = validate();
-    if (params != null) {
-      accountsApi.login(params, new Callback<AuthResponse>() {
-        @Override
-        public void success(AuthResponse authResponse, Response response) {
-          onUserAuthenticated(params);
-        }
-
-        @Override
-        public void failure(RetrofitError error) {
-          Toast.makeText(SignInActivity.this, "Auth failure", Toast.LENGTH_SHORT).show();
-          onUserAuthenticated(params);
-        }
-      });
-    }
-  }
-
-  private void onUserAuthenticated(UserRequestParams params) {
-    User currentUser = new User();
-    currentUser.setEmail(params.getEmail());
-    currentUser.setName(params.getName());
-    accountsManager.onUserLoggedIn(currentUser);
+  @Override
+  public void launchHome() {
     finish();
     startActivity(new Intent(SignInActivity.this, HomeActivity.class));
   }
 
-  private UserRequestParams validate() {
-    UserRequestParams params = new UserRequestParams();
+  @Override
+  public String getEmail() {
+    return email.getText().toString();
+  }
 
-    String email = this.email.getText().toString();
-    if (TextUtils.isEmpty(email)) {
-      emailLayout.setError(getString(R.string.error_empty_email));
-      this.email.requestFocus();
-      return null;
-    }
-       /* if (Misc.validateEmail(email)) {
-            emailLayout.setError("Email address is invalid");
-            email.requestFocus();
-            return false;
-        }*/
-    emailLayout.setError(null);
-    params.setEmail(email);
+  @Override
+  public String getPassword() {
+    return password.getText().toString();
+  }
 
-    String password = this.password.getText().toString();
-    if (TextUtils.isEmpty(password)) {
-      passwordLayout.setError(getString(R.string.error_empty_password));
-      this.password.requestFocus();
-      return null;
-    }
-
-    if (password.length() < PASSWORD_MIN_LENGTH) {
-      passwordLayout.setError(getString(R.string.error_password_min_len));
-      this.password.requestFocus();
-      return null;
-    }
-
+  @Override
+  public void hideErrors() {
     passwordLayout.setError(null);
-    params.setPassword(password);
-    return params;
+    emailLayout.setError(null);
+  }
+
+  @Override
+  public void showEmptyEmailError() {
+    emailLayout.setError(getString(R.string.error_empty_email));
+    this.email.requestFocus();
+  }
+
+  @Override
+  public void showInvalidEmailError() {
+    emailLayout.setError(getString(R.string.error_empty_email));
+    this.email.requestFocus();
+  }
+
+  @Override
+  public void showEmptyPasswordError() {
+    passwordLayout.setError(getString(R.string.error_empty_password));
+    this.password.requestFocus();
+  }
+
+  @Override
+  public void showPasswordMinError() {
+    passwordLayout.setError(getString(R.string.error_password_min_len));
+    this.password.requestFocus();
   }
 }

@@ -7,17 +7,17 @@ import java.util.regex.Pattern;
  * Author: Rajesh Batth
  * Date: 18-Jun-2015.
  */
-public final class Misc {
+public class Misc {
 
-  private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-      + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+  private static final Pattern EMAIL_PTRN = Pattern.compile(
+      "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 
-  private Misc() {
+  public static boolean validateEmailAddress(String email) {
+    Matcher mtch = EMAIL_PTRN.matcher(email);
+    return mtch.matches();
   }
 
-  public static boolean validateEmail(final String email) {
-    Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-    Matcher matcher = pattern.matcher(email);
-    return matcher.matches();
+  public static boolean isTextEmpty(String s) {
+    return s == null || s.length() == 0;
   }
 }
