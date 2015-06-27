@@ -34,7 +34,7 @@ public class AccountsManager {
     return currentUser;
   }
 
-  public void onUserLoggedIn(@NonNull User currentUser) {
+  public void setActiveUser(@NonNull User currentUser) {
     sharedPreferences.edit().putBoolean(Constants.Prefs.USER_SIGNED_IN, true).apply();
     this.currentUser = currentUser;
   }
