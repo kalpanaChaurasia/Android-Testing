@@ -12,10 +12,12 @@ import com.rajeshbatth.android_testing.core.auth.SignInActivity;
 import com.rajeshbatth.android_testing.core.home.HomeActivity;
 import javax.inject.Inject;
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity implements SplashPresenter.SplashCallBacks {
 
   @Inject
   AccountsManager accountsManager;
+
+  SplashPresenter presenter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class SplashActivity extends BaseActivity {
     setContentView(R.layout.activity_splash);
     ButterKnife.inject(this);
     SplashComponent.Injector.getSplashComponent(this).inject(this);
+    presenter = new SplashPresenter(accountsManager, this);
     launchWithDelay();
   }
 
@@ -30,20 +33,23 @@ public class SplashActivity extends BaseActivity {
     new Handler().postDelayed(new Runnable() {
       @Override
       public void run() {
-        launchNextActivity();
+        if (isFinishing()) {
+          return; //the User has closed app
+        }
+        presenter.launchNext();
       }
     }, Constants.SPLASH_DURATION);
   }
 
-  private void launchNextActivity() {
-    if (isFinishing()) {
-      return; //the User has closed app
-    }
+  @Override
+  public void launchHome() {
     finish();
-    if (accountsManager.isUserLoggedIn()) {
-      startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-    } else {
-      startActivity(new Intent(SplashActivity.this, SignInActivity.class));
-    }
+    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+  }
+
+  @Override
+  public void launchAuth() {
+    finish();
+    startActivity(new Intent(SplashActivity.this, SignInActivity.class));
   }
 }
