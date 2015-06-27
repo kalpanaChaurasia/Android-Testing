@@ -1,10 +1,10 @@
-package com.rajeshbatth.android_testing.di.components;
+package com.rajeshbatth.android_testing.core.splash;
 
 import android.content.Context;
 import com.rajeshbatth.android_testing.account.AccountsManager;
+import com.rajeshbatth.android_testing.core.ApplicationComponent;
 import com.rajeshbatth.android_testing.di.module.AccountsModule;
 import com.rajeshbatth.android_testing.di.scope.PerActivity;
-import com.rajeshbatth.android_testing.ui.SplashActivity;
 import dagger.Component;
 import java.lang.ref.WeakReference;
 

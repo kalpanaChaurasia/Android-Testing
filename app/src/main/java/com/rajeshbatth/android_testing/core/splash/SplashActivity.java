@@ -1,4 +1,4 @@
-package com.rajeshbatth.android_testing.ui;
+package com.rajeshbatth.android_testing.core.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,9 @@ import butterknife.ButterKnife;
 import com.rajeshbatth.android_testing.R;
 import com.rajeshbatth.android_testing.account.AccountsManager;
 import com.rajeshbatth.android_testing.conf.Constants;
-import com.rajeshbatth.android_testing.di.components.SplashComponent;
+import com.rajeshbatth.android_testing.core.BaseActivity;
+import com.rajeshbatth.android_testing.core.auth.SignInActivity;
+import com.rajeshbatth.android_testing.core.home.HomeActivity;
 import javax.inject.Inject;
 
 public class SplashActivity extends BaseActivity {

@@ -1,4 +1,4 @@
-package com.rajeshbatth.android_testing.ui;
+package com.rajeshbatth.android_testing.core.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import butterknife.OnClick;
 import com.rajeshbatth.android_testing.R;
 import com.rajeshbatth.android_testing.account.AccountsManager;
 import com.rajeshbatth.android_testing.api.AccountsApi;
-import com.rajeshbatth.android_testing.di.components.AccountsComponent;
+import com.rajeshbatth.android_testing.core.home.HomeActivity;
 import com.rajeshbatth.android_testing.model.User;
 import com.rajeshbatth.android_testing.model.http.AuthResponse;
 import com.rajeshbatth.android_testing.model.http.UserRequestParams;

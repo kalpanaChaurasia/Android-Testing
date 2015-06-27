@@ -1,9 +1,8 @@
-package com.rajeshbatth.android_testing.ui;
+package com.rajeshbatth.android_testing.core;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import com.rajeshbatth.android_testing.BaseApplication;
-import com.rajeshbatth.android_testing.di.components.ApplicationComponent;
 import com.rajeshbatth.android_testing.di.module.ActivityModule;
 import com.rajeshbatth.android_testing.utils.TaskListener;
 

@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.rajeshbatth.android_testing.R;
+import com.rajeshbatth.android_testing.core.BaseActivity;
 import com.rajeshbatth.android_testing.model.Client;
 
 public class ClientDetailActivity extends BaseActivity {

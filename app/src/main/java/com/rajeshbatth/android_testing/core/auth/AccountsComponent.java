@@ -1,14 +1,13 @@
-package com.rajeshbatth.android_testing.di.components;
+package com.rajeshbatth.android_testing.core.auth;
 
 import android.content.Context;
 import com.rajeshbatth.android_testing.BaseApplication;
 import com.rajeshbatth.android_testing.account.AccountsManager;
 import com.rajeshbatth.android_testing.api.AccountsApi;
+import com.rajeshbatth.android_testing.core.ApplicationComponent;
 import com.rajeshbatth.android_testing.di.module.AccountsModule;
 import com.rajeshbatth.android_testing.di.module.ApiModule;
 import com.rajeshbatth.android_testing.di.scope.PerActivity;
-import com.rajeshbatth.android_testing.ui.SignInActivity;
-import com.rajeshbatth.android_testing.ui.SignUpActivity;
 import dagger.Component;
 import java.lang.ref.WeakReference;
 

@@ -1,4 +1,4 @@
-package com.rajeshbatth.android_testing.di.components;
+package com.rajeshbatth.android_testing.core;
 
 import com.rajeshbatth.android_testing.di.module.TestApplicationModule;
 import dagger.Component;

@@ -1,4 +1,4 @@
-package com.rajeshbatth.android_testing.ui;
+package com.rajeshbatth.android_testing.core.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import com.rajeshbatth.android_testing.R;
+import com.rajeshbatth.android_testing.core.home.HomeActivity;
 
 public class SignUpActivity extends AppCompatActivity {
 

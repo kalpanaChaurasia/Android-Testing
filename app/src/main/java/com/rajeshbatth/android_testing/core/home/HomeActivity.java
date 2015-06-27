@@ -1,4 +1,4 @@
-package com.rajeshbatth.android_testing.ui;
+package com.rajeshbatth.android_testing.core.home;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,9 +16,11 @@ import com.rajeshbatth.android_testing.R;
 import com.rajeshbatth.android_testing.account.AccountsManager;
 import com.rajeshbatth.android_testing.adapter.ClientsAdapter;
 import com.rajeshbatth.android_testing.api.HomeApi;
-import com.rajeshbatth.android_testing.di.components.HomeComponent;
+import com.rajeshbatth.android_testing.core.BaseActivity;
+import com.rajeshbatth.android_testing.core.auth.SignInActivity;
 import com.rajeshbatth.android_testing.model.Client;
 import com.rajeshbatth.android_testing.model.HomeDataModel;
+import com.rajeshbatth.android_testing.ui.ClientDetailActivity;
 import java.util.ArrayList;
 import javax.inject.Inject;
 import retrofit.Callback;

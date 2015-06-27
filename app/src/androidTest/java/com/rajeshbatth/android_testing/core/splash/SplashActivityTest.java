@@ -1,4 +1,4 @@
-package com.rajeshbatth.android_testing.ui;
+package com.rajeshbatth.android_testing.core.splash;
 
 import android.support.test.espresso.Espresso;
 import android.support.test.rule.ActivityTestRule;

@@ -1,4 +1,4 @@
-package com.rajeshbatth.android_testing.ui;
+package com.rajeshbatth.android_testing.core.home;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -7,9 +7,6 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import com.rajeshbatth.android_testing.MyIdlingResource;
 import com.rajeshbatth.android_testing.api.HomeApi;
-import com.rajeshbatth.android_testing.di.components.DaggerTestHomeComponent;
-import com.rajeshbatth.android_testing.di.components.HomeComponent;
-import com.rajeshbatth.android_testing.di.components.TestHomeComponent;
 import com.rajeshbatth.android_testing.model.Client;
 import com.rajeshbatth.android_testing.model.HomeDataModel;
 import java.util.ArrayList;

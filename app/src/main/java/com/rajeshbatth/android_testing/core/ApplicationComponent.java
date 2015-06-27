@@ -1,4 +1,4 @@
-package com.rajeshbatth.android_testing.di.components;
+package com.rajeshbatth.android_testing.core;
 
 import android.content.Context;
 import android.content.SharedPreferences;

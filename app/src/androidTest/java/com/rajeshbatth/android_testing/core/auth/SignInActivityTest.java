@@ -1,4 +1,4 @@
-package com.rajeshbatth.android_testing.ui;
+package com.rajeshbatth.android_testing.core.auth;
 
 import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;

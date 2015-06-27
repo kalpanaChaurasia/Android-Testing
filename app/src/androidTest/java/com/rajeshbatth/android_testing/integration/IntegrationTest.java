@@ -4,7 +4,7 @@ import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import com.rajeshbatth.android_testing.R;
 import com.rajeshbatth.android_testing.conf.Constants;
-import com.rajeshbatth.android_testing.ui.SplashActivity;
+import com.rajeshbatth.android_testing.core.splash.SplashActivity;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
