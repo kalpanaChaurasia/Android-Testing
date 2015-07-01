@@ -3,6 +3,7 @@ package com.rajeshbatth.android_testing.ui;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.DrawableRes;
+import android.support.v4.view.ViewPager;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.rajeshbatth.android_testing.R;
+import com.rajeshbatth.android_testing.adapter.BannerAdapter;
+import com.viewpagerindicator.CirclePageIndicator;
 
 /**
  * Created by user on 6/30/2015.
@@ -52,7 +55,9 @@ public class VersionAdapter extends RecyclerView.Adapter<VersionAdapter.VersionV
   @Override
   public void onBindViewHolder(VersionVH versionVH, int position) {
     int itemViewType = getItemViewType(position);
-    if (itemViewType == ITEM_HEADER) {
+    if (itemViewType == ITEM_PAGER) {
+      setUpPager(versionVH);
+    } else if (itemViewType == ITEM_HEADER) {
       ((TextView) versionVH.itemView).setText("Android Versions");
     } else if (itemViewType == ITEM_CARD) {
       Pair<String, Integer> pair = TestTransition.versionLogoPairs.get(position % 10);
@@ -60,6 +65,14 @@ public class VersionAdapter extends RecyclerView.Adapter<VersionAdapter.VersionV
       versionVH.setIcon(pair.second);
       runAnimation(versionVH, position, defaultItemAnimationDuration);
     }
+  }
+
+  private void setUpPager(VersionVH versionVH) {
+    ViewPager viewPager = (ViewPager) versionVH.itemView.findViewById(R.id.pager);
+    viewPager.setAdapter(new BannerAdapter());
+    CirclePageIndicator mIndicator =
+        (CirclePageIndicator) versionVH.itemView.findViewById(R.id.indicator);
+    mIndicator.setViewPager(viewPager);
   }
 
   @Override
