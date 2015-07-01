@@ -29,13 +29,13 @@ import static junit.framework.Assert.assertSame;
 public class HomeActivityTest {
 
   @Rule
-  public ActivityTestRule<HomeActivity> mActivityTestRule =
+  public ActivityTestRule<HomeActivity> activityTestRule =
       new ActivityTestRule<>(HomeActivity.class);
 
   @Inject
-  HomeApi mHomeApi;
+  HomeApi homeApi;
 
-  private HomeActivity mHomeActivity;
+  private HomeActivity homeActivity;
 
   @Before
   public void setUp() {
@@ -45,7 +45,7 @@ public class HomeActivityTest {
   }
 
   public void testActualServer() {
-    HomeActivity activity = mActivityTestRule.getActivity();
+    HomeActivity activity = activityTestRule.getActivity();
     MyIdlingResource idlingResource = new MyIdlingResource();
     activity.setTaskListener(idlingResource);
     Espresso.registerIdlingResources(idlingResource);
@@ -53,31 +53,31 @@ public class HomeActivityTest {
 
   @Test
   public void testHitsServer() {
-    mActivityTestRule.launchActivity(new Intent());
-    mHomeActivity = mActivityTestRule.getActivity();
-    Mockito.verify(mHomeApi).getHomeDataAsync(Matchers.<Callback<HomeDataModel>>any());
-    assertSame(mHomeApi, mHomeActivity.homeApi);
+    activityTestRule.launchActivity(new Intent());
+    homeActivity = activityTestRule.getActivity();
+    Mockito.verify(homeApi).getHomeDataAsync(Matchers.<Callback<HomeDataModel>>any());
+    assertSame(homeApi, homeActivity.homeApi);
     final HomeDataModel dummyData = getDummyData();
-    mHomeActivity.runOnUiThread(new Runnable() {
+    homeActivity.runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        mHomeActivity.mCallback.success(dummyData, null);
+        homeActivity.callback.success(dummyData, null);
       }
     });
   }
 
   @Test
   public void testHandleError() {
-    mActivityTestRule.launchActivity(new Intent());
-    mHomeActivity = mActivityTestRule.getActivity();
-    Mockito.verify(mHomeApi).getHomeDataAsync(Matchers.<Callback<HomeDataModel>>any());
-    assertSame(mHomeApi, mHomeActivity.homeApi);
+    activityTestRule.launchActivity(new Intent());
+    homeActivity = activityTestRule.getActivity();
+    Mockito.verify(homeApi).getHomeDataAsync(Matchers.<Callback<HomeDataModel>>any());
+    assertSame(homeApi, homeActivity.homeApi);
     final HomeDataModel dummyData = getDummyData();
     dummyData.getClients().clear();
-    mHomeActivity.runOnUiThread(new Runnable() {
+    homeActivity.runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        mHomeActivity.mCallback.success(dummyData, null);
+        homeActivity.callback.success(dummyData, null);
       }
     });
   }

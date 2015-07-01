@@ -28,7 +28,7 @@ import static com.rajeshbatth.android_testing.TestUtils.safeSleep;
 public class SignUpActivityTest {
 
   @Rule
-  public ActivityTestRule<SignUpActivity> mActivityTestRule =
+  public ActivityTestRule<SignUpActivity> activityTestRule =
       new ActivityTestRule<>(SignUpActivity.class);
 
   /**
@@ -36,7 +36,7 @@ public class SignUpActivityTest {
    */
   @Test
   public void testForm() {
-    mActivityTestRule.launchActivity(new Intent());
+    activityTestRule.launchActivity(new Intent());
 
     onView(withId(R.id.username)).perform(typeText("Alice"), closeSoftKeyboard());
     safeSleep(SLEEP_INTERVAL_SMALL);

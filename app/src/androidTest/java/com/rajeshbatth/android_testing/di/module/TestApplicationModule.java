@@ -19,16 +19,16 @@ import retrofit.client.OkClient;
 @Module
 public class TestApplicationModule {
 
-  final Context mAppContext;
+  final Context appContext;
 
   public TestApplicationModule(@NonNull Context appContext) {
-    mAppContext = appContext.getApplicationContext();
+    this.appContext = appContext.getApplicationContext();
   }
 
   @Provides
   @Singleton
   public Context provideAppContext() {
-    return mAppContext;
+    return appContext;
   }
 
   @Provides

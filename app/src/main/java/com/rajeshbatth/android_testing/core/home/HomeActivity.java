@@ -51,7 +51,7 @@ public class HomeActivity extends BaseActivity {
   private ArrayList<Client> clientList = new ArrayList<>();
 
   @VisibleForTesting
-  Callback<HomeDataModel> mCallback = new Callback<HomeDataModel>() {
+  Callback<HomeDataModel> callback = new Callback<HomeDataModel>() {
     @Override
     public void success(HomeDataModel homeDataModel, Response response) {
       clientList.clear();
@@ -88,7 +88,7 @@ public class HomeActivity extends BaseActivity {
   }
 
   private void fetchClients() {
-    homeApi.getHomeDataAsync(mCallback);
+    homeApi.getHomeDataAsync(callback);
     progressDialog = ProgressDialog.show(this, null, "Loading...", false, false);
     setTaskRunning(true);
   }

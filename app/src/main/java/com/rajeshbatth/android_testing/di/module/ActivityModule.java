@@ -12,15 +12,15 @@ import dagger.Provides;
 @Module
 public class ActivityModule {
 
-  private final AppCompatActivity mAppCompatActivity;
+  private final AppCompatActivity activity;
 
   public ActivityModule(AppCompatActivity appCompatActivity) {
-    mAppCompatActivity = appCompatActivity;
+    activity = appCompatActivity;
   }
 
   @Provides
   @PerActivity
   public AppCompatActivity provideAppCompatActivity() {
-    return mAppCompatActivity;
+    return activity;
   }
 }

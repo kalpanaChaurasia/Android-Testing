@@ -18,29 +18,28 @@ import retrofit.client.OkClient;
 @Module
 public class ApplicationModule {
 
-  final Context mAppContext;
+  final Context appContext;
 
   public ApplicationModule(@NonNull Context appContext) {
-    mAppContext = appContext;
+    this.appContext = appContext;
   }
 
   @Provides
   @Singleton
   public Context provideAppContext() {
-    return mAppContext;
+    return appContext;
   }
 
   @Provides
   @Singleton
   public SharedPreferences provideSharedPreferences() {
-    return mAppContext.getSharedPreferences(Constants.Prefs.NAME, Context.MODE_PRIVATE);
+    return appContext.getSharedPreferences(Constants.Prefs.NAME, Context.MODE_PRIVATE);
   }
 
   @Singleton
   @Provides
   public OkHttpClient provideHttpClient() {
-    OkHttpClient client = new OkHttpClient();
-    return client;
+    return new OkHttpClient();
   }
 
   @Singleton

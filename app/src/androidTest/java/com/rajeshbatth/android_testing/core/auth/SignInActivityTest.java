@@ -28,7 +28,7 @@ import static com.rajeshbatth.android_testing.TestUtils.safeSleep;
 public class SignInActivityTest {
 
   @Rule
-  public ActivityTestRule<SignInActivity> mActivityTestRule =
+  public ActivityTestRule<SignInActivity> activityTestRule =
       new ActivityTestRule<>(SignInActivity.class);
 
   /**
@@ -62,7 +62,7 @@ public class SignInActivityTest {
    */
   @Test
   public void testSignIn() {
-    mActivityTestRule.launchActivity(new Intent());
+    activityTestRule.launchActivity(new Intent());
     onView(withId(R.id.email)).perform(typeText("alice@gmail.com"));
     onView(withId(R.id.password)).perform(typeText("secret_password"), closeSoftKeyboard());
     safeSleep(SLEEP_INTERVAL_SMALL);

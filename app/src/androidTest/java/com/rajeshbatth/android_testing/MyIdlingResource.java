@@ -9,9 +9,9 @@ import com.rajeshbatth.android_testing.utils.TaskListener;
  */
 public class MyIdlingResource implements IdlingResource, TaskListener {
 
-  private boolean mIsTaskRunning;
+  private boolean isTaskRunning;
 
-  private ResourceCallback mResourceCallback;
+  private ResourceCallback resourceCallback;
 
   @Override
   public String getName() {
@@ -20,24 +20,24 @@ public class MyIdlingResource implements IdlingResource, TaskListener {
 
   @Override
   public boolean isIdleNow() {
-    return !mIsTaskRunning;
+    return !isTaskRunning;
   }
 
   @Override
   public void registerIdleTransitionCallback(ResourceCallback resourceCallback) {
-    mResourceCallback = resourceCallback;
+    this.resourceCallback = resourceCallback;
   }
 
   @Override
   public void onTaskStarted() {
-    mIsTaskRunning = true;
+    isTaskRunning = true;
   }
 
   @Override
   public void onTaskEnded() {
-    mIsTaskRunning = false;
-    if (mResourceCallback != null) {
-      mResourceCallback.onTransitionToIdle();
+    isTaskRunning = false;
+    if (resourceCallback != null) {
+      resourceCallback.onTransitionToIdle();
     }
   }
 }

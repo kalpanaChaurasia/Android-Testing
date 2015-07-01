@@ -27,13 +27,13 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class SplashActivityTest {
 
   @Rule
-  public ActivityTestRule<SplashActivity> mActivityTestRule =
+  public ActivityTestRule<SplashActivity> activityTestRule =
       new ActivityTestRule<>(SplashActivity.class);
 
   @Before
   public void setUp() {
     MyIdlingResource idlingResource = new MyIdlingResource();
-    SplashActivity activity = mActivityTestRule.getActivity();
+    SplashActivity activity = activityTestRule.getActivity();
     activity.setTaskListener(idlingResource);
     Espresso.registerIdlingResources(idlingResource);
   }
@@ -41,7 +41,7 @@ public class SplashActivityTest {
   @Test
   public void testSignInActivityLaunch() {
 
-    SplashActivity activity = mActivityTestRule.getActivity();
+    SplashActivity activity = activityTestRule.getActivity();
     AccountsManager accountsManager = Mockito.mock(AccountsManager.class);
     activity.accountsManager = accountsManager;
 
