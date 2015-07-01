@@ -17,4 +17,6 @@
   <string name="title_activity_client_detail">ClientDetailActivity</string>
   <string name="client_details">Client Details</string>
   <string name="action_logout">Logout</string>
+  <string name="title_activity_test_transition">TestTransition</string>
+  <string name="title_activity_version_detail">VersionDetailActivity</string>
 </resources>
