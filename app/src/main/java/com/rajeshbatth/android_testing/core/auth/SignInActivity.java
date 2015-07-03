@@ -8,12 +8,14 @@ import android.support.v7.widget.Toolbar;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import com.rajeshbatth.android_testing.BuildConfig;
 import com.rajeshbatth.android_testing.R;
 import com.rajeshbatth.android_testing.account.AccountsManager;
 import com.rajeshbatth.android_testing.api.AccountsApi;
 import com.rajeshbatth.android_testing.core.BaseActivity;
 import com.rajeshbatth.android_testing.core.home.HomeActivity;
 import javax.inject.Inject;
+import timber.log.Timber;
 
 public class SignInActivity extends BaseActivity implements SignInPresenter.SignInCallbacks {
 
@@ -51,6 +53,7 @@ public class SignInActivity extends BaseActivity implements SignInPresenter.Sign
     presenter = new SignInPresenter(accountsManager, accountsApi, this);
     setSupportActionBar(toolbar);
     setTitle(R.string.sign_in);
+    Timber.d("Git SHA: %s", BuildConfig.GIT_SHA);
   }
 
   @OnClick(R.id.sign_in_button)
@@ -93,7 +96,7 @@ public class SignInActivity extends BaseActivity implements SignInPresenter.Sign
 
   @Override
   public void showInvalidEmailError() {
-    emailLayout.setError(getString(R.string.error_empty_email));
+    emailLayout.setError(getString(R.string.error_invalid_email));
     this.email.requestFocus();
   }
 

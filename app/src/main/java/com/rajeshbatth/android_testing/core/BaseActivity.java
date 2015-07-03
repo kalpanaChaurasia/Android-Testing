@@ -1,6 +1,5 @@
 package com.rajeshbatth.android_testing.core;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import com.rajeshbatth.android_testing.BaseApplication;
 import com.rajeshbatth.android_testing.di.module.ActivityModule;
@@ -14,11 +13,6 @@ public class BaseActivity extends AppCompatActivity {
   protected TaskListener taskListener;
 
   private boolean isRunning;
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-  }
 
   protected ApplicationComponent getApplicationComponent() {
     return ((BaseApplication) getApplication()).getApplicationComponent();

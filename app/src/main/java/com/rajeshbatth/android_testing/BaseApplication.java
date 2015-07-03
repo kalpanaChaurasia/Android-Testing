@@ -10,6 +10,7 @@ import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.squareup.okhttp.OkHttpClient;
 import javax.inject.Inject;
+import timber.log.Timber;
 
 /**
  * This is release variant of Application. Also check DebugApplication.java in debug flavor,
@@ -39,6 +40,7 @@ public class BaseApplication extends Application {
     super.onCreate();
     ApplicationComponent.Holder.getApplicationComponent(this).inject(this);
     LeakCanary.install(this);
+    Timber.plant(new Timber.DebugTree());
   }
 
   public ApplicationComponent getApplicationComponent() {
