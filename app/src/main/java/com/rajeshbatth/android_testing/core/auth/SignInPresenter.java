@@ -12,7 +12,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * Created by user on 6/27/2015.
+ * Created by Rajesh Batth on 6/27/2015.
  */
 public class SignInPresenter {
 
@@ -30,28 +30,30 @@ public class SignInPresenter {
   public boolean validate() {
     callbacks.hideErrors();
     String email = callbacks.getEmail();
+    boolean hasError = false;
     if (Misc.isTextEmpty(email)) {
       callbacks.showEmptyEmailError();
-      return false;
+      hasError = true;
     }
 
-    if (!Misc.validateEmailAddress(email)) {
+    if (!hasError && !Misc.validateEmailAddress(email)) {
       callbacks.showInvalidEmailError();
-      return false;
+      hasError = true;
     }
 
     String password = callbacks.getPassword();
-    if (Misc.isTextEmpty(password)) {
+    if (!hasError && Misc.isTextEmpty(password)) {
       callbacks.showEmptyPasswordError();
-      return false;
+      hasError = true;
     }
 
-    if (password.length() < SignInActivity.PASSWORD_MIN_LENGTH) {
+    boolean isPasswordSmall = password.length() < SignInActivity.PASSWORD_MIN_LENGTH;
+    if (!hasError && isPasswordSmall) {
       callbacks.showPasswordMinError();
-      return false;
+      hasError = true;
     }
 
-    return true;
+    return !hasError;
   }
 
   public void submit() {

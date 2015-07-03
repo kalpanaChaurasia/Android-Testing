@@ -58,13 +58,17 @@ public class HomeActivity extends BaseActivity {
       clientList.addAll(homeDataModel.getClients());
       adapter.notifyDataSetChanged();
       setTaskRunning(false);
-      progressDialog.dismiss();
+      if (progressDialog != null && progressDialog.isShowing()) {
+        progressDialog.dismiss();
+      }
     }
 
     @Override
     public void failure(RetrofitError error) {
       setTaskRunning(false);
-      progressDialog.dismiss();
+      if (progressDialog != null && progressDialog.isShowing()) {
+        progressDialog.dismiss();
+      }
     }
   };
 
