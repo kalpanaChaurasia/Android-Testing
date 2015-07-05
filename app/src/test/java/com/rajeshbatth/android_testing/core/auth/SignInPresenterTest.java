@@ -39,11 +39,13 @@ public class SignInPresenterTest {
   @Test
   public void testValidate() throws Exception {
     when(callbacks.getEmail()).thenReturn("");
+    when(callbacks.getPassword()).thenReturn("");
     signInPresenter.validate();
     verify(callbacks).hideErrors();
     verify(callbacks).showEmptyEmailError();
 
     when(callbacks.getEmail()).thenReturn("rajesh");
+    when(callbacks.getPassword()).thenReturn("");
     signInPresenter.validate();
     verify(callbacks).showInvalidEmailError();
 
