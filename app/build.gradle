@@ -1,4 +1,19 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath 'me.tatarka:gradle-retrolambda:3.2.0'
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
 apply from: '../config/quality.gradle'
 
@@ -51,10 +66,19 @@ android {
   }
 }
 
+retrolambda {
+  jdk System.getenv("JAVA8_HOME")
+  oldJdk System.getenv("JAVA7_HOME")
+  javaVersion JavaVersion.VERSION_1_7
+  jvmArgs '-arg1', '-arg2'
+  defaultMethods false
+  incremental true
+}
+
 
 
 final DAGGER_VERSION = '2.0'
-final SUPPORT_LIB_VERSION = '22.2.0'
+final SUPPORT_LIB_VERSION = '22.2.1'
 final DEXMAKER_VERSION = '1.2'
 
 dependencies {
@@ -100,8 +124,3 @@ dependencies {
   testCompile 'junit:junit:4.12'
   testCompile 'org.mockito:mockito-core:1.10.19'
 }
-
-// The default 'assemble' task only applies to normal variants. Add test variants as well.
-android.testVariants.all { variant -> tasks.getByName('assemble').dependsOn variant.assemble
-}
-

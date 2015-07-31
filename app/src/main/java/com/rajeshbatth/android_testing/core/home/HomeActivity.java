@@ -55,6 +55,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     public void success(HomeDataModel homeDataModel, Response response) {
       clientList.clear();
+
       clientList.addAll(homeDataModel.getClients());
       adapter.notifyDataSetChanged();
       setTaskRunning(false);
