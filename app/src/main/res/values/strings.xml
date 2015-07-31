@@ -19,4 +19,7 @@
   <string name="error_empty_password">Password is empty</string>
   <string name="error_invalid_email">Email is Invalid</string>
   <string name="error_password_min_len">Password should be of minimum 6 characters</string>
+  <string name="title_activity_test">TestActivity</string>
+
+  <string name="hello_world">Hello world!</string>
 </resources>

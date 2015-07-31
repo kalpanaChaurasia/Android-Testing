@@ -13,11 +13,11 @@
         <activity
             android:name=".core.splash.SplashActivity"
             android:label="@string/app_name" >
-            <intent-filter>
+           <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity
             android:name=".core.auth.SignInActivity"
@@ -30,8 +30,16 @@
             android:label="@string/title_activity_sign_in" />
         <activity
             android:name=".ui.ClientDetailActivity"
-            android:label="@string/title_activity_client_detail"
-            >
+            android:label="@string/title_activity_client_detail" >
+        </activity>
+        <activity
+            android:name=".ui.TestActivity"
+            android:label="@string/title_activity_test" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
